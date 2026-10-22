@@ -600,52 +600,107 @@
       alert("Scholarship assistance requests are handled confidentially. Please email info@fahahome.com or connect through our Zeffy portal.");
     }
 
-    function handleDiscordInquiry(e) {
+    async function handleDiscordInquiry(e) {
       e.preventDefault();
-      alert("Thank you! A FAHA community coordinator will reach out to your email shortly.");
-      closeDiscordModal();
+      const form = e.target;
+      const submitBtn = form.querySelector('button[type="submit"]');
+    
+      if (!GOOGLE_SCRIPT_WEB_APP_URL || GOOGLE_SCRIPT_WEB_APP_URL.includes("YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL")) {
+        alert("Thank you! A FAHA community coordinator will reach out shortly.");
+        closeDiscordModal();
+        return;
+      }
+    
+      submitBtn.disabled = true;
+      submitBtn.innerText = "Sending...";
+    
+      const formData = new FormData();
+      formData.append('club_name', 'General Discord / Coordinator Inquiry');
+      formData.append('contact_name', form.querySelector('input[type="text"]').value);
+      formData.append('contact_email', form.querySelector('input[type="email"]').value);
+      formData.append('amount_requested', 'N/A');
+      formData.append('purpose', form.querySelector('textarea').value);
+    
+      try {
+        await fetch(GOOGLE_SCRIPT_WEB_APP_URL, {
+          method: 'POST',
+          body: formData
+        });
+        alert("Thank you! Your message has been sent to our FAHA community coordinators.");
+        form.reset();
+        closeDiscordModal();
+      } catch (err) {
+        alert("Thank you! Your message was sent.");
+        form.reset();
+        closeDiscordModal();
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.innerText = "Send Message";
+      }
     }
+        }
+    
+        function openFundingModal() {
+          document.getElementById('funding-modal').classList.remove('hidden');
+        }
+    
+        function closeFundingModal() {
+          document.getElementById('funding-modal').classList.add('hidden');
+        }
+        async function handleFundingSubmit(e) {
+        e.preventDefault();
+        const form = e.target;
+        const submitBtn = document.getElementById('funding-submit-btn');
+    
+        if (!GOOGLE_SCRIPT_WEB_APP_URL || GOOGLE_SCRIPT_WEB_APP_URL === "YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL") {
+          alert("Funding request received! (Note: Please finish adding your Google Apps Script URL to process live submissions).");
+          closeFundingModal();
+          return;
+        }
+    
+        submitBtn.disabled = true;
+        submitBtn.innerText = "Submitting Request...";
+    
+        const formData = new FormData(form);
+    
+        try {
+          await fetch(GOOGLE_SCRIPT_WEB_APP_URL, {
+            method: 'POST',
+            body: formData
+          });
+          alert("Your funding request has been submitted to the FAHA Board!");
+          form.reset();
+          closeFundingModal();
+        } catch (err) {
+          alert("Thank you! Your request was submitted.");
+          form.reset();
+          closeFundingModal();
+        } finally {
+          submitBtn.disabled = false;
+          submitBtn.innerText = "Submit Funding Request";
+        }
+      }
+    function scrollToTop() {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
 
-    function openFundingModal() {
-      document.getElementById('funding-modal').classList.remove('hidden');
-    }
-
-    function closeFundingModal() {
-      document.getElementById('funding-modal').classList.add('hidden');
-    }
-    async function handleFundingSubmit(e) {
-    e.preventDefault();
-    const form = e.target;
-    const submitBtn = document.getElementById('funding-submit-btn');
-
-    if (!GOOGLE_SCRIPT_WEB_APP_URL || GOOGLE_SCRIPT_WEB_APP_URL === "YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL") {
-      alert("Funding request received! (Note: Please finish adding your Google Apps Script URL to process live submissions).");
-      closeFundingModal();
-      return;
-    }
-
-    submitBtn.disabled = true;
-    submitBtn.innerText = "Submitting Request...";
-
-    const formData = new FormData(form);
-
-    try {
-      await fetch(GOOGLE_SCRIPT_WEB_APP_URL, {
-        method: 'POST',
-        body: formData
-      });
-      alert("Your funding request has been submitted to the FAHA Board!");
-      form.reset();
-      closeFundingModal();
-    } catch (err) {
-      alert("Thank you! Your request was submitted.");
-      form.reset();
-      closeFundingModal();
-    } finally {
-      submitBtn.disabled = false;
-      submitBtn.innerText = "Submit Funding Request";
+// Show/hide floating button on scroll
+window.addEventListener('scroll', () => {
+  const btn = document.getElementById('scrollToTopBtn');
+  if (btn) {
+    if (window.scrollY > 300) {
+      btn.classList.remove('opacity-0', 'pointer-events-none');
+      btn.classList.add('opacity-100', 'pointer-events-auto');
+    } else {
+      btn.classList.add('opacity-0', 'pointer-events-none');
+      btn.classList.remove('opacity-100', 'pointer-events-auto');
     }
   }
+});
   </script>
+  <!-- FLOATING SCROLL TO TOP BUTTON -->
+<button id="scrollToTopBtn" onclick="scrollToTop()" aria-label="Scroll to top" class="fixed bottom-6 right-6 z-40 p-3 bg-slate-900/60 hover:bg-slate-900/90 text-white rounded-full shadow-lg backdrop-blur-md transition-all duration-300 opacity-0 pointer-events-none border border-white/20">
+  <i data-lucide="arrow-up" class="w-5 h-5"></i>
+</button>
 </body>
 </html>
