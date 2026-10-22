@@ -43,6 +43,14 @@
     html, body {
       overflow-x: hidden;
     }
+    /* Hide scrollbar for clean carousel UI while keeping touch scroll active */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
   </style>
 
   <!-- Google Analytics (GA4) Tag Holder for Google Ad Grants -->
@@ -81,17 +89,16 @@
       <nav class="hidden md:flex items-center gap-8 font-medium text-slate-600 text-sm">
         <a href="#about" class="hover:text-brand-600 transition py-2">About Us</a>
         <a href="#structure" class="hover:text-brand-600 transition py-2">How We Work</a>
+        <a href="#board" class="hover:text-brand-600 transition py-2">Leadership</a>
         <a href="#scholarships" class="hover:text-brand-600 transition py-2">Trip Scholarships</a>
         <a href="#discord" class="hover:text-brand-600 transition py-2">Discord Community</a>
       </nav>
 
       <!-- Action Buttons (Desktop) -->
       <div class="hidden sm:flex items-center gap-3">
-        <!-- Replace href with your actual Zeffy membership URL -->
         <a href="https://www.zeffy.com/en-US/o/faha" target="_blank" rel="noopener noreferrer" class="px-4 py-2.5 text-sm font-semibold text-brand-700 border border-brand-500/30 bg-brand-50 rounded-xl hover:bg-brand-100 transition min-h-[44px] flex items-center justify-center">
           Join FAHA
         </a>
-        <!-- Replace href with your actual Zeffy donation URL -->
         <a href="https://www.zeffy.com/en-US/o/faha" target="_blank" rel="noopener noreferrer" class="px-4 py-2.5 text-sm font-semibold text-white bg-brand-600 rounded-xl shadow-sm hover:bg-brand-700 transition min-h-[44px] flex items-center justify-center">
           Donate
         </a>
@@ -107,6 +114,7 @@
     <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-slate-200 px-4 pt-3 pb-5 space-y-3 text-base font-medium">
       <a href="#about" onclick="toggleMobileMenu()" class="block py-2 text-slate-700 hover:text-brand-600">About Us</a>
       <a href="#structure" onclick="toggleMobileMenu()" class="block py-2 text-slate-700 hover:text-brand-600">How We Work</a>
+      <a href="#board" onclick="toggleMobileMenu()" class="block py-2 text-slate-700 hover:text-brand-600">Leadership</a>
       <a href="#scholarships" onclick="toggleMobileMenu()" class="block py-2 text-slate-700 hover:text-brand-600">Trip Scholarships</a>
       <a href="#discord" onclick="toggleMobileMenu()" class="block py-2 text-slate-700 hover:text-brand-600">Discord Community</a>
       <div class="pt-2 flex flex-col gap-2.5">
@@ -201,6 +209,125 @@
     </div>
   </section>
 
+  <!-- BOARD OF DIRECTORS CAROUSEL SECTION -->
+  <section id="board" class="py-12 md:py-16 bg-slate-50/50 border-b border-slate-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
+        <div>
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-100/80 text-brand-800 text-xs font-semibold mb-2">
+            <i data-lucide="user-check" class="w-3.5 h-3.5"></i>
+            <span>Volunteer Leadership</span>
+          </div>
+          <h2 class="text-2xl sm:text-3xl font-bold text-slate-900">Board of Directors</h2>
+          <p class="mt-1 text-slate-600 text-sm">Volunteer homeschool parents guiding FAHA's non-profit mission.</p>
+        </div>
+
+        <!-- Carousel Navigation Controls -->
+        <div class="flex items-center gap-2 shrink-0">
+          <button onclick="scrollBoardCarousel(-300)" aria-label="Previous Board Member" class="p-2.5 rounded-xl bg-white border border-slate-200 text-slate-700 hover:bg-brand-50 hover:text-brand-600 transition shadow-sm min-h-[44px] min-w-[44px] flex items-center justify-center">
+            <i data-lucide="chevron-left" class="w-5 h-5"></i>
+          </button>
+          <button onclick="scrollBoardCarousel(300)" aria-label="Next Board Member" class="p-2.5 rounded-xl bg-white border border-slate-200 text-slate-700 hover:bg-brand-50 hover:text-brand-600 transition shadow-sm min-h-[44px] min-w-[44px] flex items-center justify-center">
+            <i data-lucide="chevron-right" class="w-5 h-5"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Carousel Container -->
+      <div id="board-carousel" class="flex gap-5 overflow-x-auto snap-x snap-mandatory scroll-smooth no-scrollbar pb-4 pt-1">
+        
+        <!-- President -->
+        <div class="snap-start shrink-0 w-[260px] sm:w-[280px] bg-white rounded-2xl p-5 border border-slate-200 shadow-sm flex flex-col justify-between">
+          <div>
+            <div class="w-20 h-20 mx-auto rounded-full bg-brand-100 text-brand-600 flex items-center justify-center mb-4 font-bold text-xl overflow-hidden border-2 border-brand-500/20">
+              <!-- Replace src with photo file name e.g. "board-president.jpg" -->
+              <img src="president.jpg" alt="President" class="w-full h-full object-cover" onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden')">
+              <span class="hidden">PR</span>
+            </div>
+            <div class="text-center">
+              <span class="inline-block px-2.5 py-0.5 rounded-full bg-brand-50 text-brand-700 text-[11px] font-bold uppercase tracking-wider mb-1">President</span>
+              <h3 class="text-base font-bold text-slate-900">Board President</h3>
+              <p class="text-xs text-slate-500 mt-2 leading-relaxed">
+                Oversees non-profit governance, strategic direction, and community partnerships to support member families.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Vice President -->
+        <div class="snap-start shrink-0 w-[260px] sm:w-[280px] bg-white rounded-2xl p-5 border border-slate-200 shadow-sm flex flex-col justify-between">
+          <div>
+            <div class="w-20 h-20 mx-auto rounded-full bg-sky-100 text-sky-600 flex items-center justify-center mb-4 font-bold text-xl overflow-hidden border-2 border-sky-500/20">
+              <img src="vice-president.jpg" alt="Vice President" class="w-full h-full object-cover" onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden')">
+              <span class="hidden">VP</span>
+            </div>
+            <div class="text-center">
+              <span class="inline-block px-2.5 py-0.5 rounded-full bg-sky-50 text-sky-700 text-[11px] font-bold uppercase tracking-wider mb-1">Vice President</span>
+              <h3 class="text-base font-bold text-slate-900">Vice President</h3>
+              <p class="text-xs text-slate-500 mt-2 leading-relaxed">
+                Coordinates member initiatives, assists club leaders, and helps manage volunteer support programs.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Treasurer -->
+        <div class="snap-start shrink-0 w-[260px] sm:w-[280px] bg-white rounded-2xl p-5 border border-slate-200 shadow-sm flex flex-col justify-between">
+          <div>
+            <div class="w-20 h-20 mx-auto rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mb-4 font-bold text-xl overflow-hidden border-2 border-emerald-500/20">
+              <img src="treasurer.jpg" alt="Treasurer" class="w-full h-full object-cover" onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden')">
+              <span class="hidden">TR</span>
+            </div>
+            <div class="text-center">
+              <span class="inline-block px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-700 text-[11px] font-bold uppercase tracking-wider mb-1">Treasurer</span>
+              <h3 class="text-base font-bold text-slate-900">Treasurer</h3>
+              <p class="text-xs text-slate-500 mt-2 leading-relaxed">
+                Manages 501(c)(3) financial compliance, club budget allocations, and trip scholarship distributions.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Secretary -->
+        <div class="snap-start shrink-0 w-[260px] sm:w-[280px] bg-white rounded-2xl p-5 border border-slate-200 shadow-sm flex flex-col justify-between">
+          <div>
+            <div class="w-20 h-20 mx-auto rounded-full bg-indigo-100 text-indigo-600 flex items-center justify-center mb-4 font-bold text-xl overflow-hidden border-2 border-indigo-500/20">
+              <img src="secretary.jpg" alt="Secretary" class="w-full h-full object-cover" onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden')">
+              <span class="hidden">SC</span>
+            </div>
+            <div class="text-center">
+              <span class="inline-block px-2.5 py-0.5 rounded-full bg-indigo-50 text-indigo-700 text-[11px] font-bold uppercase tracking-wider mb-1">Secretary</span>
+              <h3 class="text-base font-bold text-slate-900">Secretary</h3>
+              <p class="text-xs text-slate-500 mt-2 leading-relaxed">
+                Maintains non-profit records, board minutes, official communications, and membership documentation.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Board Member at Large -->
+        <div class="snap-start shrink-0 w-[260px] sm:w-[280px] bg-white rounded-2xl p-5 border border-slate-200 shadow-sm flex flex-col justify-between">
+          <div>
+            <div class="w-20 h-20 mx-auto rounded-full bg-slate-100 text-slate-600 flex items-center justify-center mb-4 font-bold text-xl overflow-hidden border-2 border-slate-300">
+              <img src="board-member-1.jpg" alt="Board Member at Large" class="w-full h-full object-cover" onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden')">
+              <span class="hidden">BM</span>
+            </div>
+            <div class="text-center">
+              <span class="inline-block px-2.5 py-0.5 rounded-full bg-slate-100 text-slate-700 text-[11px] font-bold uppercase tracking-wider mb-1">At-Large</span>
+              <h3 class="text-base font-bold text-slate-900">Board Member</h3>
+              <p class="text-xs text-slate-500 mt-2 leading-relaxed">
+                Represents general membership interests, assists with special events, and supports club operations.
+              </p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
   <!-- TRIP SCHOLARSHIPS -->
   <section id="scholarships" class="py-12 md:py-16 bg-slate-50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -279,6 +406,7 @@
           <ul class="space-y-2.5 text-xs">
             <li><a href="#about" class="hover:text-white transition py-1 block">About Us</a></li>
             <li><a href="#structure" class="hover:text-white transition py-1 block">How We Work</a></li>
+            <li><a href="#board" class="hover:text-white transition py-1 block">Leadership</a></li>
             <li><a href="#scholarships" class="hover:text-white transition py-1 block">Trip Scholarships</a></li>
             <li><a href="#discord" class="hover:text-white transition py-1 block">Discord Community</a></li>
           </ul>
@@ -344,6 +472,11 @@
     function toggleMobileMenu() {
       const menu = document.getElementById('mobile-menu');
       menu.classList.toggle('hidden');
+    }
+
+    function scrollBoardCarousel(amount) {
+      const container = document.getElementById('board-carousel');
+      container.scrollBy({ left: amount, behavior: 'smooth' });
     }
 
     function openDiscordInquiryModal() {
