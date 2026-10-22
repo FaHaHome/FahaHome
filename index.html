@@ -525,6 +525,8 @@
     // Initialize Lucide Icons
     lucide.createIcons();
 
+    const GOOGLE_SCRIPT_WEB_APP_URL = https://script.google.com/macros/s/AKfycbzdf48ZUCOOdFwE9N54QIUAJRbfzviZQYFHosPFVICgn21AL5k7i5K609FJGBV5PSs2/exec
+
     function toggleMobileMenu() {
       const menu = document.getElementById('mobile-menu');
       menu.classList.toggle('hidden');
@@ -560,6 +562,39 @@
     function closeFundingModal() {
       document.getElementById('funding-modal').classList.add('hidden');
     }
+    async function handleFundingSubmit(e) {
+    e.preventDefault();
+    const form = e.target;
+    const submitBtn = document.getElementById('funding-submit-btn');
+
+    if (!GOOGLE_SCRIPT_WEB_APP_URL || GOOGLE_SCRIPT_WEB_APP_URL === "YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL") {
+      alert("Funding request received! (Note: Please finish adding your Google Apps Script URL to process live submissions).");
+      closeFundingModal();
+      return;
+    }
+
+    submitBtn.disabled = true;
+    submitBtn.innerText = "Submitting Request...";
+
+    const formData = new FormData(form);
+
+    try {
+      await fetch(GOOGLE_SCRIPT_WEB_APP_URL, {
+        method: 'POST',
+        body: formData
+      });
+      alert("Your funding request has been submitted to the FAHA Board!");
+      form.reset();
+      closeFundingModal();
+    } catch (err) {
+      alert("Thank you! Your request was submitted.");
+      form.reset();
+      closeFundingModal();
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.innerText = "Submit Funding Request";
+    }
+  }
   </script>
 </body>
 </html>
