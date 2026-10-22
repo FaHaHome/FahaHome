@@ -680,27 +680,28 @@
           submitBtn.innerText = "Submit Funding Request";
         }
       }
-    function scrollToTop() {
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-
-// Show/hide floating button on scroll
-window.addEventListener('scroll', () => {
-  const btn = document.getElementById('scrollToTopBtn');
-  if (btn) {
-    if (window.scrollY > 300) {
-      btn.classList.remove('opacity-0', 'pointer-events-none');
-      btn.classList.add('opacity-100', 'pointer-events-auto');
-    } else {
-      btn.classList.add('opacity-0', 'pointer-events-none');
-      btn.classList.remove('opacity-100', 'pointer-events-auto');
+function scrollToTop() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
-  }
-});
+
+    // Show/hide floating button on scroll
+    window.addEventListener('scroll', () => {
+      const btn = document.getElementById('scrollToTopBtn');
+      if (btn) {
+        if (window.scrollY > 300) {
+          btn.classList.remove('opacity-0', 'pointer-events-none');
+          btn.classList.add('opacity-100', 'pointer-events-auto');
+        } else {
+          btn.classList.add('opacity-0', 'pointer-events-none');
+          btn.classList.remove('opacity-100', 'pointer-events-auto');
+        }
+      }
+    });
   </script>
   <!-- FLOATING SCROLL TO TOP BUTTON -->
-<button id="scrollToTopBtn" onclick="scrollToTop()" aria-label="Scroll to top" class="fixed bottom-6 right-6 z-40 p-3 bg-slate-900/60 hover:bg-slate-900/90 text-white rounded-full shadow-lg backdrop-blur-md transition-all duration-300 opacity-0 pointer-events-none border border-white/20">
-  <i data-lucide="arrow-up" class="w-5 h-5"></i>
-</button>
+  <button id="scrollToTopBtn" onclick="scrollToTop()" aria-label="Scroll to top" class="fixed bottom-6 right-6 z-40 p-3 hover:px-4 bg-slate-900/70 hover:bg-slate-900/95 text-white rounded-full shadow-lg backdrop-blur-md transition-all duration-300 opacity-0 pointer-events-none border border-white/20 flex items-center gap-1.5 group">
+    <i data-lucide="chevron-up" class="w-5 h-5 shrink-0"></i>
+    <span class="max-w-0 overflow-hidden whitespace-nowrap group-hover:max-w-xs transition-all duration-300 text-xs font-semibold">Back to Top</span>
+  </button>
 </body>
 </html>
