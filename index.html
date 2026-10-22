@@ -4,13 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>FAHA - Secular Homeschool Together</title>
-  <meta name="description" content="FAHA is a member-run, community-supported 501(c)(3) nonprofit providing secular homeschool families with club funding, group trips, and scholarship opportunities.">
+  <meta name="description" content="FAHA is a member-run, community-supported 501(c)(3) non-profit providing secular homeschool families with club funding, group trips, and scholarship opportunities.">
   
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- Lucide Icons -->
   <script src="https://unpkg.com/lucide@latest"></script>
-  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
   
   <script>
     tailwind.config = {
@@ -39,7 +38,7 @@
     }
   </script>
   
-  <!-- Optional: Google Analytics GA4 tag place-holder for Google Ad Grants -->
+  <!-- Google Analytics (GA4) Tag Holder for Google Ad Grants -->
   <!-- 
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-YOURGA4ID"></script>
   <script>
@@ -54,8 +53,8 @@
 
   <!-- TOP ANNOUNCEMENT BAR -->
   <div class="bg-brand-700 text-white text-xs md:text-sm py-2 px-4 text-center font-medium flex items-center justify-center gap-2">
-    <span class="bg-brand-500 text-white text-[10px] font-bold uppercase px-2 py-0.5 rounded-full">501(c)(3) Nonprofit</span>
-    <span>Community-Supported Secular Homeschool Organization</span>
+    <span class="bg-brand-500 text-white text-[10px] font-bold uppercase px-2 py-0.5 rounded-full">501(c)(3) Non-Profit</span>
+    <span>Inclusive Secular Homeschool Community</span>
   </div>
 
   <!-- NAVIGATION -->
@@ -64,7 +63,6 @@
       
       <!-- Logo -->
       <a href="#" class="flex items-center gap-3">
-        <!-- Logo Image with Fallback -->
         <img src="FaHaLogoSource PNG.jpg" alt="FAHA Logo" class="h-12 w-auto object-contain" onerror="this.onerror=null; this.classList.add('hidden'); document.getElementById('logo-text-fallback').classList.remove('hidden');">
         <div id="logo-text-fallback" class="hidden">
           <span class="text-2xl font-black tracking-tight text-brand-700">FAHA</span>
@@ -76,8 +74,8 @@
       <nav class="hidden md:flex items-center gap-8 font-medium text-slate-600 text-sm">
         <a href="#about" class="hover:text-brand-600 transition">About Us</a>
         <a href="#structure" class="hover:text-brand-600 transition">How We Work</a>
-        <a href="#scholarships" class="hover:text-brand-600 transition">Scholarships</a>
-        <a href="#discord" class="hover:text-brand-600 transition">Discord Hub</a>
+        <a href="#scholarships" class="hover:text-brand-600 transition">Trip Scholarships</a>
+        <a href="#discord" class="hover:text-brand-600 transition">Discord Community</a>
       </nav>
 
       <!-- Action Buttons -->
@@ -100,8 +98,8 @@
     <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-slate-200 px-4 pt-2 pb-4 space-y-3 text-sm">
       <a href="#about" class="block text-slate-600 hover:text-brand-600">About Us</a>
       <a href="#structure" class="block text-slate-600 hover:text-brand-600">How We Work</a>
-      <a href="#scholarships" class="block text-slate-600 hover:text-brand-600">Scholarships</a>
-      <a href="#discord" class="block text-slate-600 hover:text-brand-600">Discord Hub</a>
+      <a href="#scholarships" class="block text-slate-600 hover:text-brand-600">Trip Scholarships</a>
+      <a href="#discord" class="block text-slate-600 hover:text-brand-600">Discord Community</a>
       <div class="pt-2 flex flex-col gap-2">
         <button onclick="openZeffyModal('membership')" class="w-full text-center py-2 text-sm font-semibold text-brand-700 bg-brand-50 rounded-lg border border-brand-200">
           Join FAHA
@@ -114,79 +112,79 @@
   </header>
 
   <!-- HERO SECTION -->
-  <section class="relative bg-gradient-to-b from-brand-50/70 via-slate-50 to-white pt-16 pb-20 md:pt-24 md:pb-28">
+  <section id="about" class="relative bg-gradient-to-b from-brand-50/70 via-slate-50 to-white pt-16 pb-16 md:pt-20 md:pb-24">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
       
       <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-brand-100/60 text-brand-700 text-xs font-semibold mb-6">
-        <i data-lucide="users" class="w-4 h-4"></i>
-        <span>Member-Run &amp; Community Supported</span>
+        <i data-lucide="shield-check" class="w-4 h-4"></i>
+        <span>100% Secular &amp; Member-Run</span>
       </div>
 
       <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold text-slate-900 tracking-tight max-w-4xl mx-auto leading-tight">
-        Secular Homeschooling, <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-600 to-sky-600">Organized Together</span>
+        A Member-Organized <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-600 to-sky-600">Secular Homeschool</span> Community
       </h1>
 
       <p class="mt-6 text-lg md:text-xl text-slate-600 max-w-2xl mx-auto leading-relaxed">
-        FAHA provides the organization, group funding, and trip scholarships so families can lead clubs, build community, and make homeschool memorable.
+        FAHA provides the non-profit framework, club funding, and trip scholarships so families can organize inclusive activities together.
       </p>
 
       <!-- CTA Group -->
       <div class="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
         <button onclick="openZeffyModal('membership')" class="w-full sm:w-auto px-8 py-3.5 bg-brand-600 text-white font-bold rounded-xl shadow-md hover:bg-brand-700 transition flex items-center justify-center gap-2">
-          <span>Become a Member</span>
+          <span>Join Membership</span>
           <i data-lucide="arrow-right" class="w-5 h-5"></i>
         </button>
         
         <a href="#discord" class="w-full sm:w-auto px-8 py-3.5 bg-slate-900 text-white font-semibold rounded-xl hover:bg-slate-800 transition flex items-center justify-center gap-2">
           <i data-lucide="message-square" class="w-5 h-5"></i>
-          <span>Join Our Discord</span>
+          <span>Discord Hub</span>
         </a>
       </div>
 
     </div>
   </section>
 
-  <!-- HOW FAHA WORKS (ORGANIZATIONAL STRUCTURE) -->
+  <!-- HOW FAHA WORKS (MEMBER STRUCTURE) -->
   <section id="structure" class="py-16 bg-white border-y border-slate-100">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
-      <div class="text-center max-w-2xl mx-auto mb-16">
-        <h2 class="text-3xl font-bold text-slate-900">Member-Run. Community-Backed.</h2>
-        <p class="mt-3 text-slate-600">FAHA isn’t a top-down school—it’s an engine built to empower homeschool families to start clubs, plan field trips, and support one another.</p>
+      <div class="text-center max-w-2xl mx-auto mb-12">
+        <h2 class="text-3xl font-bold text-slate-900">Member-Led, Community-Supported</h2>
+        <p class="mt-3 text-slate-600 text-sm md:text-base">We aren't a traditional school. FAHA is a non-profit engine that equips families to start clubs, plan outings, and build community.</p>
       </div>
 
       <div class="grid md:grid-cols-3 gap-8">
         
         <!-- Pillar 1 -->
-        <div class="bg-slate-50 p-8 rounded-2xl border border-slate-200/80 shadow-sm hover:border-brand-500/40 transition">
-          <div class="w-12 h-12 bg-brand-100 text-brand-600 rounded-xl flex items-center justify-center mb-6">
-            <i data-lucide="compass" class="w-6 h-6"></i>
+        <div class="bg-slate-50 p-6 rounded-2xl border border-slate-200/80 shadow-sm">
+          <div class="w-12 h-12 bg-brand-100 text-brand-600 rounded-xl flex items-center justify-center mb-4">
+            <i data-lucide="users" class="w-6 h-6"></i>
           </div>
-          <h3 class="text-xl font-bold text-slate-900 mb-2">Member-Driven Clubs</h3>
+          <h3 class="text-lg font-bold text-slate-900 mb-2">Member-Driven Clubs</h3>
           <p class="text-slate-600 text-sm leading-relaxed">
-            Parents and student leaders initiate the activities they want to see—from science clubs and robotics to outdoor hikes and art meetups.
+            Parents and students start and lead the clubs they want—from robotics and science to nature hikes and gaming groups.
           </p>
         </div>
 
         <!-- Pillar 2 -->
-        <div class="bg-slate-50 p-8 rounded-2xl border border-slate-200/80 shadow-sm hover:border-brand-500/40 transition">
-          <div class="w-12 h-12 bg-sky-100 text-sky-600 rounded-xl flex items-center justify-center mb-6">
-            <i data-lucide="piggy-bank" class="w-6 h-6"></i>
+        <div class="bg-slate-50 p-6 rounded-2xl border border-slate-200/80 shadow-sm">
+          <div class="w-12 h-12 bg-sky-100 text-sky-600 rounded-xl flex items-center justify-center mb-4">
+            <i data-lucide="coins" class="w-6 h-6"></i>
           </div>
-          <h3 class="text-xl font-bold text-slate-900 mb-2">Organizational Funds</h3>
+          <h3 class="text-lg font-bold text-slate-900 mb-2">Organizational Funds</h3>
           <p class="text-slate-600 text-sm leading-relaxed">
-            FAHA holds the non-profit infrastructure, insurance, and funds needed to help members buy club supplies, secure venues, and organize larger events.
+            FAHA holds the non-profit status, insurance, and budget needed to fund member club supplies and venue rentals.
           </p>
         </div>
 
         <!-- Pillar 3 -->
-        <div class="bg-slate-50 p-8 rounded-2xl border border-slate-200/80 shadow-sm hover:border-brand-500/40 transition">
-          <div class="w-12 h-12 bg-emerald-100 text-emerald-600 rounded-xl flex items-center justify-center mb-6">
-            <i data-lucide="heart-handshake" class="w-6 h-6"></i>
+        <div class="bg-slate-50 p-6 rounded-2xl border border-slate-200/80 shadow-sm">
+          <div class="w-12 h-12 bg-emerald-100 text-emerald-600 rounded-xl flex items-center justify-center mb-4">
+            <i data-lucide="heart" class="w-6 h-6"></i>
           </div>
-          <h3 class="text-xl font-bold text-slate-900 mb-2">Trip Scholarships</h3>
+          <h3 class="text-lg font-bold text-slate-900 mb-2">Inclusive &amp; Secular</h3>
           <p class="text-slate-600 text-sm leading-relaxed">
-            We believe cost should never prevent a child from participating. FAHA raises funds to provide need-based trip scholarships for member families.
+            Strictly secular educational spaces where all homeschooling families are welcomed, respected, and supported.
           </p>
         </div>
 
@@ -194,7 +192,7 @@
     </div>
   </section>
 
-  <!-- SCHOLARSHIPS & OPPORTUNITIES -->
+  <!-- TRIP SCHOLARSHIPS -->
   <section id="scholarships" class="py-16 bg-slate-50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="bg-gradient-to-br from-brand-700 to-slate-900 text-white rounded-3xl p-8 md:p-12 shadow-xl flex flex-col lg:flex-row items-center justify-between gap-8">
@@ -206,20 +204,16 @@
           </div>
           <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight">Homeschool Trip Scholarships</h2>
           <p class="mt-4 text-slate-200 leading-relaxed text-sm sm:text-base">
-            Every year, FAHA organizes group trips, museum visits, and educational camps. Through community donations, we maintain a dedicated scholarship fund so every registered family can apply for partial or full trip assistance.
+            Cost should never keep a child from learning. FAHA raises non-profit funds to provide need-based trip scholarships for member families attending group outings and educational events.
           </p>
-          <div class="mt-6 flex flex-wrap gap-4 text-xs font-medium text-brand-100">
-            <span class="flex items-center gap-1.5"><i data-lucide="check-circle" class="w-4 h-4 text-brand-500"></i> Confidential Applications</span>
-            <span class="flex items-center gap-1.5"><i data-lucide="check-circle" class="w-4 h-4 text-brand-500"></i> Supported by Community Grants</span>
-          </div>
         </div>
 
         <div class="w-full lg:w-auto flex flex-col sm:flex-row lg:flex-col gap-3 min-w-[220px]">
-          <button onclick="openScholarshipModal()" class="w-full px-6 py-3.5 bg-white text-slate-900 font-bold rounded-xl hover:bg-slate-100 transition text-center shadow">
-            Apply for Assistance
+          <button onclick="openScholarshipModal()" class="w-full px-6 py-3.5 bg-white text-slate-900 font-bold rounded-xl hover:bg-slate-100 transition text-center shadow text-sm">
+            Apply for Scholarship
           </button>
-          <button onclick="openZeffyModal('donate')" class="w-full px-6 py-3.5 bg-brand-500/20 text-white font-semibold rounded-xl border border-white/20 hover:bg-brand-500/30 transition text-center">
-            Fund a Scholarship
+          <button onclick="openZeffyModal('donate')" class="w-full px-6 py-3.5 bg-brand-500/20 text-white font-semibold rounded-xl border border-white/20 hover:bg-brand-500/30 transition text-center text-sm">
+            Donate to Scholarship Fund
           </button>
         </div>
 
@@ -227,67 +221,29 @@
     </div>
   </section>
 
-  <!-- DISCORD COMMUNITY SECTION -->
+  <!-- DISCORD COMMUNITY -->
   <section id="discord" class="py-16 bg-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid lg:grid-cols-2 gap-12 items-center">
+      <div class="bg-slate-900 text-white rounded-3xl p-8 md:p-12 border border-slate-800 flex flex-col md:flex-row items-center justify-between gap-8">
         
-        <div>
-          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-50 text-sky-700 text-xs font-semibold mb-4">
+        <div class="max-w-xl">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-500/20 text-sky-300 text-xs font-semibold mb-4">
             <i data-lucide="message-square" class="w-4 h-4"></i>
-            <span>Our Digital Hub</span>
+            <span>Community Coordination</span>
           </div>
-          <h2 class="text-3xl font-extrabold text-slate-900 tracking-tight">We Organize on Discord</h2>
-          <p class="mt-4 text-slate-600 leading-relaxed">
-            From coordinating weeknight board game clubs to sharing field trip details, our private Discord server keeps the FAHA community connected.
+          <h2 class="text-3xl font-extrabold tracking-tight">Organized on Discord</h2>
+          <p class="mt-3 text-slate-300 text-sm leading-relaxed">
+            Our private Discord server connects members, schedules club meetups, and shares event details. An invite link is automatically delivered upon joining FAHA membership.
           </p>
-          
-          <ul class="mt-6 space-y-3 text-sm text-slate-700">
-            <li class="flex items-start gap-3">
-              <i data-lucide="check-circle-2" class="w-5 h-5 text-brand-600 shrink-0 mt-0.5"></i>
-              <span><strong>Automatic Access:</strong> Joining FAHA membership delivers an instant Discord invite right to your inbox.</span>
-            </li>
-            <li class="flex items-start gap-3">
-              <i data-lucide="check-circle-2" class="w-5 h-5 text-brand-600 shrink-0 mt-0.5"></i>
-              <span><strong>Focused Channels:</strong> Channels for age groups, geography, specific clubs, and parent chat.</span>
-            </li>
-          </ul>
-
-          <div class="mt-8 flex items-center gap-4">
-            <button onclick="openZeffyModal('membership')" class="px-6 py-3 bg-brand-600 text-white font-semibold rounded-xl hover:bg-brand-700 transition">
-              Get Invited via Membership
-            </button>
-            <button onclick="openDiscordInquiryModal()" class="px-6 py-3 text-slate-700 border border-slate-300 font-semibold rounded-xl hover:bg-slate-50 transition">
-              Ask a Question First
-            </button>
-          </div>
         </div>
 
-        <div class="bg-slate-900 text-slate-200 p-6 rounded-2xl border border-slate-800 shadow-lg">
-          <div class="flex items-center justify-between border-b border-slate-800 pb-4 mb-4">
-            <div class="flex items-center gap-2">
-              <div class="w-3 h-3 rounded-full bg-red-500"></div>
-              <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
-              <div class="w-3 h-3 rounded-full bg-green-500"></div>
-              <span class="text-xs font-mono text-slate-400 ml-2"># FAHA Discord Preview</span>
-            </div>
-            <span class="text-xs text-brand-500 font-semibold">Active Community</span>
-          </div>
-
-          <div class="space-y-4 text-xs font-mono">
-            <div class="bg-slate-800/60 p-3 rounded-lg border border-slate-700/50">
-              <span class="text-sky-400 font-bold"># general-announcements</span>
-              <p class="text-slate-300 mt-1">Science Museum field trip confirmed for next Thursday! Scholarship spots available.</p>
-            </div>
-            <div class="bg-slate-800/60 p-3 rounded-lg border border-slate-700/50">
-              <span class="text-brand-400 font-bold"># club-robotics</span>
-              <p class="text-slate-300 mt-1">Next meeting supply list is posted. Funded via FAHA club grant!</p>
-            </div>
-            <div class="bg-slate-800/60 p-3 rounded-lg border border-slate-700/50">
-              <span class="text-indigo-400 font-bold"># parent-lounge</span>
-              <p class="text-slate-300 mt-1">Anyone interested in starting a Friday park meetup in the East district?</p>
-            </div>
-          </div>
+        <div class="flex flex-col sm:flex-row md:flex-col gap-3 w-full md:w-auto">
+          <button onclick="openZeffyModal('membership')" class="px-6 py-3.5 bg-brand-600 text-white font-bold rounded-xl hover:bg-brand-700 transition text-center text-sm shadow">
+            Join &amp; Get Discord Invite
+          </button>
+          <button onclick="openDiscordInquiryModal()" class="px-6 py-3.5 bg-slate-800 text-slate-300 border border-slate-700 font-semibold rounded-xl hover:bg-slate-700 transition text-center text-sm">
+            Contact a Coordinator
+          </button>
         </div>
 
       </div>
@@ -305,16 +261,16 @@
             <span>FAHA</span>
           </a>
           <p class="mt-3 text-slate-400 text-xs leading-relaxed max-w-md">
-            FAHA (Secular Homeschool Together) is an officially recognized 501(c)(3) nonprofit organization dedicated to empowering member-run homeschool communities with club support, trip scholarships, and inclusive connection.
+            FAHA (Secular Homeschool Together) is an officially recognized 501(c)(3) non-profit organization dedicated to empowering member-run secular homeschool communities with club support, trip scholarships, and inclusive connection.
           </p>
         </div>
 
         <div>
           <h4 class="text-white font-semibold mb-3 text-xs uppercase tracking-wider">Quick Links</h4>
           <ul class="space-y-2 text-xs">
-            <li><a href="#about" class="hover:text-white transition">About Our Mission</a></li>
-            <li><a href="#structure" class="hover:text-white transition">How Clubs Work</a></li>
-            <li><a href="#scholarships" class="hover:text-white transition">Scholarship Program</a></li>
+            <li><a href="#about" class="hover:text-white transition">About Us</a></li>
+            <li><a href="#structure" class="hover:text-white transition">How We Work</a></li>
+            <li><a href="#scholarships" class="hover:text-white transition">Trip Scholarships</a></li>
             <li><a href="#discord" class="hover:text-white transition">Discord Community</a></li>
           </ul>
         </div>
@@ -324,7 +280,7 @@
           <p class="text-xs text-slate-400 leading-relaxed">
             Email: <a href="mailto:info@fahahome.com" class="text-brand-500 hover:underline">info@fahahome.com</a><br>
             Website: <a href="https://fahahome.com" class="text-brand-500 hover:underline">fahahome.com</a><br>
-            EIN: Provided upon request for tax deductions.
+            501(c)(3) Tax-Exempt Non-Profit
           </p>
         </div>
 
@@ -332,53 +288,50 @@
 
       <div class="pt-6 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-4">
         <p>&copy; <script>document.write(new Date().getFullYear())</script> FAHA (fahahome.com). All rights reserved.</p>
-        <p>501(c)(3) Tax-Exempt Nonprofit Organization</p>
+        <p>501(c)(3) Non-Profit Organization</p>
       </div>
     </div>
   </footer>
 
   <!-- ZEFFY EMBED MODAL -->
   <div id="zeffy-modal" class="fixed inset-0 z-50 hidden bg-slate-900/70 backdrop-blur-sm flex items-center justify-center p-4">
-    <div class="bg-white w-full max-w-2xl rounded-2xl overflow-hidden shadow-2xl border border-slate-200 flex flex-col max-h-[90vh]">
+    <div class="bg-white w-full max-w-md rounded-2xl overflow-hidden shadow-2xl border border-slate-200 p-6 flex flex-col items-center text-center">
       
-      <div class="p-4 bg-slate-50 border-b border-slate-200 flex items-center justify-between">
-        <h3 id="zeffy-modal-title" class="font-bold text-slate-800">FAHA Membership &amp; Support</h3>
-        <button onclick="closeZeffyModal()" class="text-slate-400 hover:text-slate-600 p-1">
-          <i data-lucide="x" class="w-6 h-6"></i>
+      <div class="w-full flex items-center justify-between border-b border-slate-100 pb-3 mb-4">
+        <h3 id="zeffy-modal-title" class="font-bold text-slate-800 text-sm">FAHA Support &amp; Registration</h3>
+        <button onclick="closeZeffyModal()" class="text-slate-400 hover:text-slate-600">
+          <i data-lucide="x" class="w-5 h-5"></i>
         </button>
       </div>
 
-      <!-- Zeffy Iframe Container -->
-      <div class="p-6 overflow-y-auto flex-1 flex flex-col items-center justify-center text-center">
-        <div class="p-4 bg-brand-50 rounded-full text-brand-600 mb-4">
-          <i data-lucide="shield-check" class="w-8 h-8"></i>
-        </div>
-        <p class="text-sm text-slate-600 mb-6 max-w-md">
-          You are being connected directly to FAHA's 100% fee-free Zeffy registration system.
-        </p>
-
-        <!-- Replace this button / link with your direct Zeffy page URL -->
-        <a id="zeffy-direct-btn" href="https://www.zeffy.com/en-US/o/faha" target="_blank" class="w-full max-w-xs py-3.5 bg-brand-600 text-white font-bold rounded-xl shadow hover:bg-brand-700 transition flex items-center justify-center gap-2">
-          <span>Continue on Zeffy</span>
-          <i data-lucide="external-link" class="w-4 h-4"></i>
-        </a>
+      <div class="p-3 bg-brand-50 rounded-full text-brand-600 mb-3">
+        <i data-lucide="shield-check" class="w-8 h-8"></i>
       </div>
+      
+      <p class="text-xs text-slate-600 mb-6">
+        You are being connected directly to FAHA's 100% fee-free Zeffy registration system.
+      </p>
+
+      <a id="zeffy-direct-btn" href="https://www.zeffy.com/en-US/o/faha" target="_blank" class="w-full py-3 bg-brand-600 text-white font-bold rounded-xl shadow hover:bg-brand-700 transition flex items-center justify-center gap-2 text-sm">
+        <span>Continue on Zeffy</span>
+        <i data-lucide="external-link" class="w-4 h-4"></i>
+      </a>
 
     </div>
   </div>
 
-  <!-- DISCORD PREVIEW INQUIRY MODAL -->
+  <!-- DISCORD INQUIRY MODAL -->
   <div id="discord-modal" class="fixed inset-0 z-50 hidden bg-slate-900/70 backdrop-blur-sm flex items-center justify-center p-4">
     <div class="bg-white w-full max-w-md rounded-2xl overflow-hidden shadow-2xl border border-slate-200 p-6">
       <div class="flex items-center justify-between border-b border-slate-100 pb-3 mb-4">
-        <h3 class="font-bold text-slate-800">Inquire About Our Discord</h3>
+        <h3 class="font-bold text-slate-800 text-sm">Contact a Community Coordinator</h3>
         <button onclick="closeDiscordModal()" class="text-slate-400 hover:text-slate-600">
           <i data-lucide="x" class="w-5 h-5"></i>
         </button>
       </div>
 
       <p class="text-xs text-slate-600 mb-4">
-        Prospective parents are welcome to reach out to a coordinator prior to purchasing membership.
+        Have questions about FAHA's secular community or Discord before joining? Send us a quick message.
       </p>
 
       <form onsubmit="handleDiscordInquiry(event)" class="space-y-3">
@@ -391,7 +344,7 @@
           <input type="email" required class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-brand-500 outline-none">
         </div>
         <div>
-          <label class="block text-xs font-medium text-slate-700 mb-1">Questions / Children Ages</label>
+          <label class="block text-xs font-medium text-slate-700 mb-1">Questions</label>
           <textarea rows="3" required class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-brand-500 outline-none"></textarea>
         </div>
         <button type="submit" class="w-full py-2.5 bg-brand-600 text-white font-bold rounded-lg hover:bg-brand-700 transition text-sm">
@@ -417,7 +370,7 @@
       const btn = document.getElementById('zeffy-direct-btn');
 
       if (type === 'membership') {
-        title.innerText = "Join FAHA Membership via Zeffy";
+        title.innerText = "FAHA Membership via Zeffy";
         btn.href = "https://www.zeffy.com/en-US/o/faha"; // Replace with your exact Zeffy Membership Link
       } else {
         title.innerText = "Donate to FAHA via Zeffy";
@@ -445,20 +398,9 @@
 
     function handleDiscordInquiry(e) {
       e.preventDefault();
-      alert("Thank you! A FAHA community coordinator will reach out to your email shortly with details.");
+      alert("Thank you! A FAHA community coordinator will reach out to your email shortly.");
       closeDiscordModal();
     }
   </script>
-<script>
-  if (window.netlifyIdentity) {
-    window.netlifyIdentity.on("init", user => {
-      if (!user) {
-        window.netlifyIdentity.on("login", () => {
-          document.location.href = "/admin/";
-        });
-      }
-    });
-  }
-</script>
 </body>
 </html>
