@@ -80,7 +80,7 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 md:h-20 flex items-center justify-between">
       
       <!-- Logo -->
-      <a href="/" class="flex items-center gap-2.5">
+      <a href="index.html" class="flex items-center gap-2.5">
         <img src="FaHaLogoSource PNG.jpg" alt="FAHA Logo" class="h-9 sm:h-12 w-auto object-contain brightness-125" onerror="this.onerror=null; this.classList.add('hidden'); document.getElementById('logo-text-fallback').classList.remove('hidden');">
         <div id="logo-text-fallback" class="hidden">
           <span class="text-xl md:text-2xl font-black tracking-tight text-brand-500">FAHA</span>
@@ -90,12 +90,12 @@
 
       <!-- Desktop Nav -->
       <nav class="hidden md:flex items-center gap-6 font-medium text-slate-300 text-sm">
-        <a href="/" class="hover:text-brand-500 transition py-2">Home</a>
-        <a href="/#structure" class="hover:text-brand-500 transition py-2">How We Work</a>
-        <a href="/clubs.html" class="text-brand-500 font-bold py-2 border-b-2 border-brand-500">Club Select</a>
-        <a href="/#board" class="hover:text-brand-500 transition py-2">Leadership</a>
-        <a href="/#scholarships" class="hover:text-brand-500 transition py-2">Trip Scholarships</a>
-        <a href="/#discord" class="hover:text-brand-500 transition py-2">Discord</a>
+        <a href="index.html" class="hover:text-brand-500 transition py-2">Home</a>
+        <a href="index.html#structure" class="hover:text-brand-500 transition py-2">How We Work</a>
+        <a href="clubs.html" class="text-brand-500 font-bold py-2 border-b-2 border-brand-500">Club Select</a>
+        <a href="index.html#board" class="hover:text-brand-500 transition py-2">Leadership</a>
+        <a href="index.html#scholarships" class="hover:text-brand-500 transition py-2">Trip Scholarships</a>
+        <a href="index.html#discord" class="hover:text-brand-500 transition py-2">Discord</a>
       </nav>
 
       <!-- Header Action Buttons -->
@@ -116,11 +116,11 @@
 
     <!-- Mobile Nav Dropdown -->
     <div id="mobile-menu" class="hidden md:hidden bg-slate-900 border-b border-slate-800 px-4 pt-3 pb-5 space-y-3 text-base font-medium">
-      <a href="/" onclick="toggleMobileMenu()" class="block py-2 text-slate-300 hover:text-brand-500">Home</a>
-      <a href="/clubs.html" onclick="toggleMobileMenu()" class="block py-2 text-brand-500 font-bold">Club Select</a>
-      <a href="/#board" onclick="toggleMobileMenu()" class="block py-2 text-slate-300 hover:text-brand-500">Leadership</a>
-      <a href="/#scholarships" onclick="toggleMobileMenu()" class="block py-2 text-slate-300 hover:text-brand-500">Trip Scholarships</a>
-      <a href="/#discord" onclick="toggleMobileMenu()" class="block py-2 text-slate-300 hover:text-brand-500">Discord Community</a>
+      <a href="index.html" onclick="toggleMobileMenu()" class="block py-2 text-slate-300 hover:text-brand-500">Home</a>
+      <a href="clubs.html" onclick="toggleMobileMenu()" class="block py-2 text-brand-500 font-bold">Club Select</a>
+      <a href="index.html#board" onclick="toggleMobileMenu()" class="block py-2 text-slate-300 hover:text-brand-500">Leadership</a>
+      <a href="index.html#scholarships" onclick="toggleMobileMenu()" class="block py-2 text-slate-300 hover:text-brand-500">Trip Scholarships</a>
+      <a href="index.html#discord" onclick="toggleMobileMenu()" class="block py-2 text-slate-300 hover:text-brand-500">Discord Community</a>
       <div class="pt-2 flex flex-col gap-2.5">
         <button onclick="toggleMobileMenu(); openFundingModal();" class="w-full text-center py-3 text-sm font-bold text-brand-300 bg-brand-500/10 rounded-xl border border-brand-500/30 min-h-[48px]">
           Request Club Funding
@@ -177,12 +177,12 @@
             <i data-lucide="layout-grid" class="w-4 h-4 text-brand-500"></i>
             Active Roster
           </span>
-          <span id="club-count" class="text-xs text-slate-500 font-mono">LOADING ROSTER...</span>
+          <span id="club-count" class="text-xs text-slate-500 font-mono">CONNECTING...</span>
         </div>
 
         <!-- The Smash Grid -->
         <div id="club-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2.5 max-h-[60vh] lg:max-h-[70vh] overflow-y-auto no-scrollbar p-1">
-          <!-- Populated by JavaScript -->
+          <!-- Populated by JavaScript Spinner Preloader -->
         </div>
       </div>
 
@@ -204,46 +204,9 @@
             </span>
           </div>
 
-          <!-- Pre-populated HTML Stage (Ensures stage is never blank before fetch) -->
+          <!-- Dynamic Spotlight Stage Container -->
           <div id="spotlight-card" class="space-y-4">
-            <div class="flex items-center gap-3 sm:gap-4">
-              <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-gradient-to-br from-emerald-600 to-green-700 flex items-center justify-center text-white shadow-lg shrink-0 border border-white/20">
-                <i data-lucide="trees" class="w-6 h-6 sm:w-7 sm:h-7"></i>
-              </div>
-              <div>
-                <h2 class="text-lg sm:text-xl font-black text-white leading-tight uppercase tracking-wide">WildSchooling</h2>
-                <div class="flex items-center gap-2 mt-1">
-                  <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-brand-500/20 text-brand-300 border border-brand-500/30">All Ages</span>
-                  <span class="text-[10px] font-medium text-slate-400">Active Outdoor</span>
-                </div>
-              </div>
-            </div>
-
-            <p class="text-xs text-slate-300 leading-relaxed bg-slate-900/60 p-3.5 rounded-xl border border-slate-700/60">
-              Outdoor nature immersive exploration, foraging basics, seasonal tracking, and unstructured outdoor community.
-            </p>
-
-            <div class="grid grid-cols-2 gap-2 text-[11px] pt-1">
-              <div class="bg-slate-800/80 p-2.5 rounded-lg border border-slate-700/50">
-                <span class="block text-slate-500 text-[10px] font-semibold uppercase">Structure</span>
-                <span class="text-slate-200 font-medium">Member Parent Led</span>
-              </div>
-              <div class="bg-slate-800/80 p-2.5 rounded-lg border border-slate-700/50">
-                <span class="block text-slate-500 text-[10px] font-semibold uppercase">Cost</span>
-                <span class="text-emerald-400 font-bold">100% FAHA Funded</span>
-              </div>
-            </div>
-
-            <div class="pt-2 flex flex-col sm:flex-row gap-2">
-              <button onclick="openFundingModal('WildSchooling')" class="w-full py-3 bg-brand-600 hover:bg-brand-700 text-white font-bold rounded-xl text-xs transition flex items-center justify-center gap-1.5 shadow min-h-[48px]">
-                <i data-lucide="coins" class="w-4 h-4"></i>
-                <span>Request Funds for WildSchooling</span>
-              </button>
-              <a href="/#discord" class="w-full py-3 bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 font-semibold rounded-xl text-xs transition flex items-center justify-center gap-1.5 min-h-[48px]">
-                <i data-lucide="message-square" class="w-4 h-4 text-sky-400"></i>
-                <span>Ask in Discord</span>
-              </a>
-            </div>
+            <!-- Loaded smoothly by JavaScript -->
           </div>
 
         </div>
@@ -260,8 +223,8 @@
         <p class="text-slate-500 mt-0.5">10408 Courthouse Rd, PMB #42, Spotsylvania, VA 22553</p>
       </div>
       <div class="flex items-center gap-4 text-slate-400">
-        <a href="/" class="hover:text-white transition py-1">Home</a>
-        <a href="/#funding" class="hover:text-white transition py-1">Request Funds</a>
+        <a href="index.html" class="hover:text-white transition py-1">Home</a>
+        <a href="index.html#funding" class="hover:text-white transition py-1">Request Funds</a>
         <a href="mailto:info@fahahome.com" class="hover:text-white transition py-1">info@fahahome.com</a>
       </div>
       <p class="text-slate-600">&copy; <script>document.write(new Date().getFullYear())</script> FAHA 501(c)(3)</p>
@@ -324,40 +287,68 @@
   <!-- JAVASCRIPT DATA & INTERACTION SCRIPT -->
   <script>
     const GOOGLE_SCRIPT_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbzdf48ZUCOOdFwE9N54QIUAJRbfzviZQYFHosPFVICgn21AL5k7i5K609FJGBV5PSs2/exec";
+    
+    // PASTE YOUR PUBLISHED GOOGLE SHEET EXPORT URL HERE:
+    const GOOGLE_SHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/YOUR_SHEET_ID_HERE/export?format=csv";
 
-    // PASTE YOUR GOOGLE SHEET CSV EXPORT URL HERE:
-    const GOOGLE_SHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/1Auhpi4lgt54KrtpnE-LD0yZKA3rv1iETR3vfS0soBwA/export?format=csv";
-
-    // Complete Fallback Roster
-    let clubsData = [
-      { id: 'art', name: 'Art Studio', category: 'arts', icon: 'palette', color: 'from-purple-500 to-indigo-600', ages: 'All Ages', status: 'Active', desc: 'Creative exploration across drawing, painting, mixed media, and group projects hosted by member parents.' },
-      { id: 'boardgames', name: 'Board Games', category: 'games', icon: 'dices', color: 'from-amber-500 to-orange-600', ages: 'Elem - Teen', status: 'Active', desc: 'Strategy, tabletop, and cooperative games designed to build social connections, logical reasoning, and teamwork.' },
-      { id: 'chess', name: 'Chess Club', category: 'games', icon: 'crown', color: 'from-emerald-500 to-teal-700', ages: 'All Ages', status: 'Active', desc: 'Led by board member Tristan Hinz, focusing on casual play, tactical drills, and friendly tournaments.' },
-      { id: 'cosplay', name: 'Cosplay & Costume', category: 'arts', icon: 'scissors', color: 'from-pink-500 to-rose-600', ages: 'Tweens/Teens', status: 'Active', desc: 'Prop-making, sewing, and costume craft workshops for creative youth interested in character design.' },
-      { id: 'dnd', name: 'D&D / TTRPG', category: 'games', icon: 'swords', color: 'from-red-600 to-amber-700', ages: 'Tweens/Teens', status: 'Active', desc: 'Tabletop roleplaying campaigns emphasizing collaborative storytelling, character building, and creative problem solving.' },
-      { id: 'engineering', name: 'Adaptive Toys & Eng.', category: 'games', icon: 'cpu', color: 'from-blue-600 to-cyan-600', ages: 'Middle/High', status: 'Special Project', desc: 'Hands-on engineering workshops adapting toys and electronics for accessibility while teaching basic circuits.' },
-      { id: 'pno', name: 'Parents Night Out', category: 'social', icon: 'moon', color: 'from-indigo-600 to-slate-800', ages: 'Parents/Adult', status: 'Community', desc: 'Casual social gatherings for homeschool parents to connect, share resources, and unwind.' },
-      { id: 'theater', name: 'Theater & Drama', category: 'arts', icon: 'clapperboard', color: 'from-yellow-500 to-amber-600', ages: 'All Ages', status: 'Active', desc: 'Improv exercises, stagecraft, script readings, and small ensemble performances.' },
-      { id: 'wildschooling', name: 'WildSchooling', category: 'social', icon: 'trees', color: 'from-emerald-600 to-green-700', ages: 'All Ages', status: 'Active Outdoor', desc: 'Outdoor nature immersive exploration, foraging basics, seasonal tracking, and unstructured outdoor community.' },
-      { id: 'potlucks', name: 'Community Potlucks', category: 'social', icon: 'utensils', color: 'from-orange-500 to-red-500', ages: 'Whole Family', status: 'Monthly', desc: 'Regular shared meal gatherings open to all member families to foster community ties.' },
-      { id: 'dances', name: 'Fall Ball & Spring Fling', category: 'social', icon: 'music', color: 'from-fuchsia-600 to-purple-700', ages: 'Middle/High', status: 'Seasonal Dances', desc: 'FAHA\'s flagship youth dances providing a safe, secular, inclusive formal dance experience for homeschoolers.' },
-      { id: 'modelun', name: 'Model UN', category: 'social', icon: 'globe', color: 'from-sky-600 to-blue-700', ages: 'Teens/High', status: 'Active', desc: 'Diplomacy, public speaking, research, and global policy simulations preparing students for regional conferences.' },
-      { id: 'lego', name: 'Lego Club', category: 'games', icon: 'blocks', color: 'from-yellow-400 to-red-500', ages: 'Elem / All', status: 'Active', desc: 'Free-build challenges, engineering prompts, and collaborative building sessions.' },
-      { id: 'parkday', name: 'Park Day', category: 'social', icon: 'sun', color: 'from-amber-400 to-emerald-500', ages: 'Whole Family', status: 'Weekly Gathering', desc: 'Weekly outdoor park meetups for casual play, parent connection, and physical activity.' },
-      { id: 'retrogaming', name: 'Retro Gaming', category: 'games', icon: 'gamepad-2', color: 'from-violet-600 to-indigo-800', ages: 'All Ages', status: 'Active', desc: 'Classic console gaming, arcade history, and multiplayer couch co-op gaming sessions.' },
-      { id: 'history', name: 'History Club', category: 'social', icon: 'landmark', color: 'from-stone-600 to-slate-700', ages: 'Middle/High', status: 'Active', desc: 'Deep dives into historical eras, primary source analysis, historical reenactment, and museum visits.' },
-      { id: 'minecraft', name: 'Minecraft Club', category: 'games', icon: 'box', color: 'from-green-600 to-emerald-800', ages: 'All Ages', status: 'Digital/In-Person', desc: 'Private FAHA server multiplayer building, redstone mechanics, and team survival challenges.' },
-      { id: 'fieldtrips', name: 'Field Trips', category: 'social', icon: 'compass', color: 'from-teal-600 to-cyan-700', ages: 'Whole Family', status: 'Regular Outings', desc: 'Group visits to science centers, historical sites, farms, factories, and theaters with scholarship access.' },
-      { id: 'yovaso', name: 'YOVASO Youth', category: 'social', icon: 'shield-alert', color: 'from-rose-600 to-red-700', ages: 'Teens', status: 'Safety Initiative', desc: 'Youth of Virginia Speak Out peer safety, leadership development, and community advocacy.' },
-      { id: 'actionsports', name: 'Action Sports', category: 'social', icon: 'bike', color: 'from-lime-600 to-emerald-700', ages: 'All Ages', status: 'Active', desc: 'Skatepark meetups, biking trips, roller skating, and energetic movement groups.' },
-      { id: 'playdates', name: 'Littles Playdates', category: 'social', icon: 'smile', color: 'from-sky-400 to-indigo-500', ages: 'Preschool/Early Elem', status: 'Active', desc: 'Gentle, structured playtimes geared specifically for young learners and early homeschool parents.' },
-      { id: 'writing', name: 'Writing Workshop', category: 'arts', icon: 'feather', color: 'from-amber-600 to-yellow-700', ages: 'Middle/High', status: 'Active', desc: 'Creative writing prompts, peer feedback circles, essay guidance, and NaNoWriMo support.' }
+    // Backup static roster (Loaded ONLY if fetching Google Sheet fails)
+    const backupClubsData = [
+      { id: 'art', name: 'Art Studio', category: 'arts', icon: 'palette', color: 'from-purple-500 to-indigo-600', ages: 'All Ages', status: 'Active', desc: 'Creative exploration across drawing, painting, mixed media, and group projects hosted by member parents.', structure: 'Member Parent Led', cost: '100% FAHA Funded' },
+      { id: 'boardgames', name: 'Board Games', category: 'games', icon: 'dices', color: 'from-amber-500 to-orange-600', ages: 'Elem - Teen', status: 'Active', desc: 'Strategy, tabletop, and cooperative games designed to build social connections, logical reasoning, and teamwork.', structure: 'Member Parent Led', cost: '100% FAHA Funded' },
+      { id: 'chess', name: 'Chess Club', category: 'games', icon: 'crown', color: 'from-emerald-500 to-teal-700', ages: 'All Ages', status: 'Active', desc: 'Led by board member Tristan Hinz, focusing on casual play, tactical drills, and friendly tournaments.', structure: 'Member Parent Led', cost: '100% FAHA Funded' },
+      { id: 'cosplay', name: 'Cosplay & Costume', category: 'arts', icon: 'scissors', color: 'from-pink-500 to-rose-600', ages: 'Tweens/Teens', status: 'Active', desc: 'Prop-making, sewing, and costume craft workshops for creative youth interested in character design.', structure: 'Member Parent Led', cost: '100% FAHA Funded' },
+      { id: 'dnd', name: 'D&D / TTRPG', category: 'games', icon: 'swords', color: 'from-red-600 to-amber-700', ages: 'Tweens/Teens', status: 'Active', desc: 'Tabletop roleplaying campaigns emphasizing collaborative storytelling, character building, and creative problem solving.', structure: 'Member Parent Led', cost: '100% FAHA Funded' },
+      { id: 'engineering', name: 'Adaptive Toys & Eng.', category: 'games', icon: 'cpu', color: 'from-blue-600 to-cyan-600', ages: 'Middle/High', status: 'Special Project', desc: 'Hands-on engineering workshops adapting toys and electronics for accessibility while teaching basic circuits.', structure: 'Member Parent Led', cost: '100% FAHA Funded' },
+      { id: 'pno', name: 'Parents Night Out', category: 'social', icon: 'moon', color: 'from-indigo-600 to-slate-800', ages: 'Parents/Adult', status: 'Community', desc: 'Casual social gatherings for homeschool parents to connect, share resources, and unwind.', structure: 'Member Parent Led', cost: '100% FAHA Funded' },
+      { id: 'theater', name: 'Theater & Drama', category: 'arts', icon: 'clapperboard', color: 'from-yellow-500 to-amber-600', ages: 'All Ages', status: 'Active', desc: 'Improv exercises, stagecraft, script readings, and small ensemble performances.', structure: 'Member Parent Led', cost: '100% FAHA Funded' },
+      { id: 'wildschooling', name: 'WildSchooling', category: 'social', icon: 'trees', color: 'from-emerald-600 to-green-700', ages: 'All Ages', status: 'Active Outdoor', desc: 'Outdoor nature immersive exploration, foraging basics, seasonal tracking, and unstructured outdoor community.', structure: 'Member Parent Led', cost: '100% FAHA Funded' },
+      { id: 'potlucks', name: 'Community Potlucks', category: 'social', icon: 'utensils', color: 'from-orange-500 to-red-500', ages: 'Whole Family', status: 'Monthly', desc: 'Regular shared meal gatherings open to all member families to foster community ties.', structure: 'Member Parent Led', cost: '100% FAHA Funded' },
+      { id: 'dances', name: 'Fall Ball & Spring Fling', category: 'social', icon: 'music', color: 'from-fuchsia-600 to-purple-700', ages: 'Middle/High', status: 'Seasonal Dances', desc: 'FAHA\'s flagship youth dances providing a safe, secular, inclusive formal dance experience for homeschoolers.', structure: 'Member Parent Led', cost: '100% FAHA Funded' },
+      { id: 'modelun', name: 'Model UN', category: 'social', icon: 'globe', color: 'from-sky-600 to-blue-700', ages: 'Teens/High', status: 'Active', desc: 'Diplomacy, public speaking, research, and global policy simulations preparing students for regional conferences.', structure: 'Member Parent Led', cost: '100% FAHA Funded' },
+      { id: 'lego', name: 'Lego Club', category: 'games', icon: 'blocks', color: 'from-yellow-400 to-red-500', ages: 'Elem / All', status: 'Active', desc: 'Free-build challenges, engineering prompts, and collaborative building sessions.', structure: 'Member Parent Led', cost: '100% FAHA Funded' },
+      { id: 'parkday', name: 'Park Day', category: 'social', icon: 'sun', color: 'from-amber-400 to-emerald-500', ages: 'Whole Family', status: 'Weekly Gathering', desc: 'Weekly outdoor park meetups for casual play, parent connection, and physical activity.', structure: 'Member Parent Led', cost: '100% FAHA Funded' },
+      { id: 'retrogaming', name: 'Retro Gaming', category: 'games', icon: 'gamepad-2', color: 'from-violet-600 to-indigo-800', ages: 'All Ages', status: 'Active', desc: 'Classic console gaming, arcade history, and multiplayer couch co-op gaming sessions.', structure: 'Member Parent Led', cost: '100% FAHA Funded' },
+      { id: 'history', name: 'History Club', category: 'social', icon: 'landmark', color: 'from-stone-600 to-slate-700', ages: 'Middle/High', status: 'Active', desc: 'Deep dives into historical eras, primary source analysis, historical reenactment, and museum visits.', structure: 'Member Parent Led', cost: '100% FAHA Funded' },
+      { id: 'minecraft', name: 'Minecraft Club', category: 'games', icon: 'box', color: 'from-green-600 to-emerald-800', ages: 'All Ages', status: 'Digital/In-Person', desc: 'Private FAHA server multiplayer building, redstone mechanics, and team survival challenges.', structure: 'Member Parent Led', cost: '100% FAHA Funded' },
+      { id: 'fieldtrips', name: 'Field Trips', category: 'social', icon: 'compass', color: 'from-teal-600 to-cyan-700', ages: 'Whole Family', status: 'Regular Outings', desc: 'Group visits to science centers, historical sites, farms, factories, and theaters with scholarship access.', structure: 'Member Parent Led', cost: '100% FAHA Funded' },
+      { id: 'yovaso', name: 'YOVASO Youth', category: 'social', icon: 'shield-alert', color: 'from-rose-600 to-red-700', ages: 'Teens', status: 'Safety Initiative', desc: 'Youth of Virginia Speak Out peer safety, leadership development, and community advocacy.', structure: 'Member Parent Led', cost: '100% FAHA Funded' },
+      { id: 'actionsports', name: 'Action Sports', category: 'social', icon: 'bike', color: 'from-lime-600 to-emerald-700', ages: 'All Ages', status: 'Active', desc: 'Skatepark meetups, biking trips, roller skating, and energetic movement groups.', structure: 'Member Parent Led', cost: '100% FAHA Funded' },
+      { id: 'playdates', name: 'Littles Playdates', category: 'social', icon: 'smile', color: 'from-sky-400 to-indigo-500', ages: 'Preschool/Early Elem', status: 'Active', desc: 'Gentle, structured playtimes geared specifically for young learners and early homeschool parents.', structure: 'Member Parent Led', cost: '100% FAHA Funded' },
+      { id: 'writing', name: 'Writing Workshop', category: 'arts', icon: 'feather', color: 'from-amber-600 to-yellow-700', ages: 'Middle/High', status: 'Active', desc: 'Creative writing prompts, peer feedback circles, essay guidance, and NaNoWriMo support.', structure: 'Member Parent Led', cost: '100% FAHA Funded' }
     ];
 
+    let clubsData = [];
     let currentCategory = 'all';
-    let selectedClubId = 'wildschooling';
+    let selectedClubId = '';
 
-    // Advanced Robust CSV Parser (Handles quoted fields and commas seamlessly)
+    // Show smooth preloader before CSV finishes downloading
+    function showLoadingState() {
+      const grid = document.getElementById('club-grid');
+      const stage = document.getElementById('spotlight-card');
+      
+      grid.innerHTML = `
+        <div class="col-span-full py-16 text-center text-slate-400 text-xs flex flex-col items-center justify-center gap-3">
+          <i data-lucide="loader-2" class="w-7 h-7 animate-spin text-brand-500"></i>
+          <span class="font-medium tracking-wide">Loading FAHA Club Directory...</span>
+        </div>
+      `;
+      
+      stage.innerHTML = `
+        <div class="animate-pulse space-y-4">
+          <div class="flex items-center gap-3">
+            <div class="w-12 h-12 rounded-2xl bg-slate-800"></div>
+            <div class="space-y-2">
+              <div class="h-4 w-32 bg-slate-800 rounded"></div>
+              <div class="h-3 w-20 bg-slate-800 rounded"></div>
+            </div>
+          </div>
+          <div class="h-16 bg-slate-800/60 rounded-xl"></div>
+        </div>
+      `;
+      lucide.createIcons();
+    }
+
+    // Advanced CSV Parser (Handles multi-line quotes and free-text fields cleanly)
     function parseCSV(text) {
       const rows = [];
       let row = [];
@@ -369,12 +360,8 @@
         const next = text[i + 1];
 
         if (c === '"') {
-          if (inQuotes && next === '"') {
-            curr += '"';
-            i++;
-          } else {
-            inQuotes = !inQuotes;
-          }
+          if (inQuotes && next === '"') { curr += '"'; i++; } 
+          else { inQuotes = !inQuotes; }
         } else if (c === ',' && !inQuotes) {
           row.push(curr.trim());
           curr = '';
@@ -405,7 +392,6 @@
           item[h] = rowVals[idx] ? rowVals[idx].replace(/^"(.*)"$/, '$1').trim() : '';
         });
 
-        // Filter active rows
         const isActive = !item.active || ['true', 'yes', '1', ''].includes(item.active.toLowerCase());
         if (item.id && item.name && isActive) {
           parsedData.push(item);
@@ -414,32 +400,36 @@
       return parsedData;
     }
 
-    // Fetch live data from Google Sheets
+    // Fetch Google Sheet live data
     async function loadRosterFromGoogleSheet() {
-      if (!GOOGLE_SHEET_CSV_URL || GOOGLE_SHEET_CSV_URL.includes("YOUR_SHEET_ID_HERE")) {
-        console.log("Using static fallback roster. (Set GOOGLE_SHEET_CSV_URL to fetch live).");
+      showLoadingState();
+
+      if (!GOOGLE_SHEET_CSV_URL || GOOGLE_SHEET_CSV_URL.includes("https://docs.google.com/spreadsheets/d/1Auhpi4lgt54KrtpnE-LD0yZKA3rv1iETR3vfS0soBwA/export?format=csv")) {
+        console.warn("No Google Sheet URL set. Using backup static roster.");
+        clubsData = backupClubsData;
+        selectedClubId = clubsData[0].id;
+        renderGrid();
+        selectClub(selectedClubId, false);
         return;
       }
 
       try {
-        console.log("Fetching live CSV data from Google Sheets...");
         const response = await fetch(GOOGLE_SHEET_CSV_URL, { redirect: 'follow' });
-        if (!response.ok) throw new Error(`HTTP error ${response.status}`);
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
         
         const rawCsv = await response.text();
         const parsed = parseCSV(rawCsv);
 
         if (parsed && parsed.length > 0) {
           clubsData = parsed;
-          if (!clubsData.some(c => c.id === selectedClubId)) {
-            selectedClubId = clubsData[0].id;
-          }
-          console.log(`Successfully loaded ${clubsData.length} clubs from Google Sheets!`);
+          selectedClubId = clubsData[0].id;
         } else {
-          console.warn("Parsed CSV yielded 0 valid rows. Using fallback roster.");
+          throw new Error("Parsed CSV contained no active rows.");
         }
       } catch (err) {
-        console.error("Failed to fetch Google Sheet CSV. Displaying fallback roster.", err);
+        console.error("Failed to load Google Sheet CSV. Reverting to backup roster.", err);
+        clubsData = backupClubsData;
+        selectedClubId = clubsData[0].id;
       } finally {
         renderGrid();
         selectClub(selectedClubId, false);
@@ -454,7 +444,7 @@
 
       const filtered = clubsData.filter(c => {
         const matchesCat = (currentCategory === 'all') || (c.category === currentCategory);
-        const matchesSearch = c.name.toLowerCase().includes(searchTerm) || c.desc.toLowerCase().includes(searchTerm);
+        const matchesSearch = (c.name || '').toLowerCase().includes(searchTerm) || (c.desc || '').toLowerCase().includes(searchTerm);
         return matchesCat && matchesSearch;
       });
 
@@ -484,7 +474,7 @@
       lucide.createIcons();
     }
 
-// Select Club & Stage Update
+    // Select Club Stage Display
     function selectClub(id, userInitiated = false) {
       selectedClubId = id;
       const club = clubsData.find(c => c.id === id);
@@ -506,7 +496,7 @@
         </div>
 
         <p class="text-xs text-slate-300 leading-relaxed bg-slate-900/60 p-3.5 rounded-xl border border-slate-700/60">
-          ${club.desc || 'No description provided.'}
+          ${club.desc || 'No description available.'}
         </p>
 
         <!-- Dynamic Structure & Cost Pills pulled straight from CSV -->
@@ -601,10 +591,8 @@
       }
     }
 
-    // Load initial views & fetch live Google Sheets data
-    window.addEventListener('DOMContentLoaded', async () => {
-      renderGrid();
-      await loadRosterFromGoogleSheet();
+    window.addEventListener('DOMContentLoaded', () => {
+      loadRosterFromGoogleSheet();
     });
   </script>
 </body>
