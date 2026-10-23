@@ -131,7 +131,7 @@
       </div>
     </div>
   </header>
-  
+
   <!-- CLUB SELECT HEADER & FILTER BAR -->
   <section class="relative pt-6 pb-4 bg-gradient-to-b from-slate-900 via-slate-900/90 to-slate-950 border-b border-slate-800/80">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -145,21 +145,24 @@
         SELECT YOUR <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-400 via-teal-300 to-sky-400">FAHA ACTIVITY</span>
       </h1>
       <p class="mt-1 text-slate-400 text-xs sm:text-sm max-w-2xl mx-auto">
-        Click or tap any club tile to inspect details, age levels, meeting schedules, or request club funding.
+        Click or tap any club tile to inspect details, age levels, meeting schedules, or offer to host a dormant club.
       </p>
 
       <!-- Filter Controls -->
-      <div class="mt-4 max-w-3xl mx-auto flex flex-col sm:flex-row items-center gap-2.5">
+      <div class="mt-4 max-w-4xl mx-auto flex flex-col sm:flex-row items-center gap-2.5">
         <div class="relative w-full sm:w-1/3">
           <i data-lucide="search" class="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-slate-500"></i>
           <input type="text" id="club-search" oninput="filterClubs()" placeholder="Search clubs..." class="w-full pl-9 pr-3 py-2.5 bg-slate-800/90 border border-slate-700/80 rounded-xl text-xs text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-brand-500 min-h-[44px]">
         </div>
 
         <div class="flex items-center gap-1.5 overflow-x-auto w-full sm:w-2/3 no-scrollbar py-1">
-          <button onclick="setCategoryFilter('all', this)" class="cat-btn px-3.5 py-2 rounded-xl text-xs font-semibold bg-brand-600 text-white shrink-0 min-h-[40px]">All</button>
-          <button onclick="setCategoryFilter('games', this)" class="cat-btn px-3.5 py-2 rounded-xl text-xs font-semibold bg-slate-800/80 text-slate-300 hover:text-white border border-slate-700/60 shrink-0 min-h-[40px]">Games &amp; STEM</button>
-          <button onclick="setCategoryFilter('social', this)" class="cat-btn px-3.5 py-2 rounded-xl text-xs font-semibold bg-slate-800/80 text-slate-300 hover:text-white border border-slate-700/60 shrink-0 min-h-[40px]">Social &amp; Outings</button>
-          <button onclick="setCategoryFilter('arts', this)" class="cat-btn px-3.5 py-2 rounded-xl text-xs font-semibold bg-slate-800/80 text-slate-300 hover:text-white border border-slate-700/60 shrink-0 min-h-[40px]">Arts &amp; Expression</button>
+          <button onclick="setCategoryFilter('all', this)" class="cat-btn px-3 py-2 rounded-xl text-xs font-semibold bg-brand-600 text-white shrink-0 min-h-[40px]">All Clubs</button>
+          <button onclick="setCategoryFilter('active_only', this)" class="cat-btn px-3 py-2 rounded-xl text-xs font-semibold bg-slate-800/80 text-slate-300 hover:text-white border border-slate-700/60 shrink-0 min-h-[40px] flex items-center gap-1">
+            <span class="w-2 h-2 rounded-full bg-emerald-400"></span> Active Only
+          </button>
+          <button onclick="setCategoryFilter('games', this)" class="cat-btn px-3 py-2 rounded-xl text-xs font-semibold bg-slate-800/80 text-slate-300 hover:text-white border border-slate-700/60 shrink-0 min-h-[40px]">Games &amp; STEM</button>
+          <button onclick="setCategoryFilter('social', this)" class="cat-btn px-3 py-2 rounded-xl text-xs font-semibold bg-slate-800/80 text-slate-300 hover:text-white border border-slate-700/60 shrink-0 min-h-[40px]">Social &amp; Outings</button>
+          <button onclick="setCategoryFilter('arts', this)" class="cat-btn px-3 py-2 rounded-xl text-xs font-semibold bg-slate-800/80 text-slate-300 hover:text-white border border-slate-700/60 shrink-0 min-h-[40px]">Arts &amp; Expression</button>
         </div>
       </div>
 
@@ -199,8 +202,8 @@
               <i data-lucide="sparkles" class="w-3 h-3"></i>
               Spotlight Stage
             </span>
-            <span class="text-xs font-mono text-emerald-400 flex items-center gap-1">
-              <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span> Active Club
+            <span id="spotlight-status-badge" class="text-xs font-mono text-emerald-400 flex items-center gap-1">
+              <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span> Active
             </span>
           </div>
 
@@ -223,22 +226,22 @@
         <p class="text-slate-500 mt-0.5">10408 Courthouse Rd, PMB #42, Spotsylvania, VA 22553</p>
       </div>
       <div class="flex items-center gap-4 text-slate-400">
-        <a href="/" class="hover:text-white transition py-1">Home</a>
-        <a href="/#funding" class="hover:text-white transition py-1">Request Funds</a>
+        <a href="index.html" class="hover:text-white transition py-1">Home</a>
+        <a href="index.html#funding" class="hover:text-white transition py-1">Request Funds</a>
         <a href="mailto:info@fahahome.com" class="hover:text-white transition py-1">info@fahahome.com</a>
       </div>
       <p class="text-slate-600">&copy; <script>document.write(new Date().getFullYear())</script> FAHA 501(c)(3)</p>
     </div>
   </footer>
 
-  <!-- CLUB FUNDING REQUEST MODAL -->
+  <!-- CLUB FUNDING / HOST REQUEST MODAL -->
   <div id="funding-modal" class="fixed inset-0 z-50 hidden bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-4">
     <div class="bg-slate-900 text-slate-100 w-full max-w-lg rounded-2xl overflow-hidden shadow-2xl border border-slate-800 p-6 max-h-[90vh] overflow-y-auto">
       
       <div class="flex items-center justify-between border-b border-slate-800 pb-3 mb-4">
         <div>
-          <h3 class="font-bold text-white text-base">Member Club Funding Request</h3>
-          <p class="text-xs text-slate-400">Submit budget requests for club supplies, venues, or materials.</p>
+          <h3 id="modal-title" class="font-bold text-white text-base">Member Club Request</h3>
+          <p class="text-xs text-slate-400">Submit requests for funding, host interest, or group setup.</p>
         </div>
         <button onclick="closeFundingModal()" aria-label="Close modal" class="text-slate-400 hover:text-white p-1 min-h-[44px] min-w-[44px] flex items-center justify-center">
           <i data-lucide="x" class="w-5 h-5"></i>
@@ -253,7 +256,7 @@
 
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <div>
-            <label class="block font-semibold text-slate-300 mb-1">Contact Person Name *</label>
+            <label class="block font-semibold text-slate-300 mb-1">Your Name *</label>
             <input type="text" name="contact_name" required class="w-full px-3 py-2.5 bg-slate-800 border border-slate-700 rounded-lg text-white focus:ring-2 focus:ring-brand-500 outline-none text-sm min-h-[44px]">
           </div>
           <div>
@@ -263,22 +266,22 @@
         </div>
 
         <div>
-          <label class="block font-semibold text-slate-300 mb-1">Amount Requested ($) *</label>
-          <input type="number" name="amount_requested" required min="1" step="any" placeholder="150.00" class="w-full px-3 py-2.5 bg-slate-800 border border-slate-700 rounded-lg text-white focus:ring-2 focus:ring-brand-500 outline-none text-sm min-h-[44px]">
+          <label class="block font-semibold text-slate-300 mb-1">Estimated Budget Request ($)</label>
+          <input type="number" name="amount_requested" min="0" step="any" placeholder="150.00 (Leave $0 if hosting interest only)" class="w-full px-3 py-2.5 bg-slate-800 border border-slate-700 rounded-lg text-white focus:ring-2 focus:ring-brand-500 outline-none text-sm min-h-[44px]">
         </div>
 
         <div>
-          <label class="block font-semibold text-slate-300 mb-1">Purpose & Description *</label>
-          <textarea name="purpose" rows="3" required placeholder="Describe what these funds will be used for..." class="w-full px-3 py-2.5 bg-slate-800 border border-slate-700 rounded-lg text-white focus:ring-2 focus:ring-brand-500 outline-none text-sm"></textarea>
+          <label class="block font-semibold text-slate-300 mb-1">Message / Host Proposal *</label>
+          <textarea id="modal-purpose-input" name="purpose" rows="3" required placeholder="Describe what you plan to do, your proposed schedule, or funding details..." class="w-full px-3 py-2.5 bg-slate-800 border border-slate-700 rounded-lg text-white focus:ring-2 focus:ring-brand-500 outline-none text-sm"></textarea>
         </div>
 
         <div>
-          <label class="block font-semibold text-slate-300 mb-1">Itemized Cost Breakdown</label>
-          <textarea name="itemized_costs" rows="2" placeholder="e.g. 5x Kits ($20 ea), Venue Rental ($50)" class="w-full px-3 py-2.5 bg-slate-800 border border-slate-700 rounded-lg text-white focus:ring-2 focus:ring-brand-500 outline-none text-sm"></textarea>
+          <label class="block font-semibold text-slate-300 mb-1">Itemized Cost Breakdown / Details</label>
+          <textarea name="itemized_costs" rows="2" placeholder="e.g. Venue rental, supplies, kit costs..." class="w-full px-3 py-2.5 bg-slate-800 border border-slate-700 rounded-lg text-white focus:ring-2 focus:ring-brand-500 outline-none text-sm"></textarea>
         </div>
 
         <button id="funding-submit-btn" type="submit" class="w-full py-3.5 bg-brand-600 text-white font-bold rounded-xl hover:bg-brand-700 transition text-sm min-h-[48px] shadow">
-          Submit Funding Request
+          Submit Request
         </button>
       </form>
     </div>
@@ -343,7 +346,7 @@
           <p class="text-xs text-slate-400 leading-relaxed">
             Please ask our community coordinators directly on Discord or email us for active meeting schedules.
           </p>
-          <a href="/#discord" class="inline-flex items-center justify-center gap-2 px-4 py-2.5 bg-brand-600 text-white rounded-xl text-xs font-bold hover:bg-brand-700 transition">
+          <a href="index.html#discord" class="inline-flex items-center justify-center gap-2 px-4 py-2.5 bg-brand-600 text-white rounded-xl text-xs font-bold hover:bg-brand-700 transition">
             <i data-lucide="message-square" class="w-4 h-4"></i>
             Open FAHA Discord
           </a>
@@ -396,8 +399,11 @@
           item[h] = rowVals[idx] ? rowVals[idx].replace(/^"(.*)"$/, '$1').trim() : '';
         });
 
-        const isActive = !item.active || ['true', 'yes', '1', ''].includes(item.active.toLowerCase());
-        if (item.id && item.name && isActive) {
+        // Parse Active state boolean
+        const activeRaw = (item.active || '').toLowerCase();
+        item.is_active = !item.active || ['true', 'yes', '1', 'active', ''].includes(activeRaw);
+
+        if (item.id && item.name) {
           parsedData.push(item);
         }
       }
@@ -427,7 +433,7 @@
           renderGrid();
           selectClub(selectedClubId, false);
         } else {
-          throw new Error("No active club rows found in Google Sheet.");
+          throw new Error("No club rows found in Google Sheet.");
         }
       } catch (err) {
         console.error("Failed to load Google Sheet CSV:", err);
@@ -435,36 +441,47 @@
       }
     }
 
-    // Render Grid
+    // Render Roster Grid
     function renderGrid() {
       const grid = document.getElementById('club-grid');
       const searchTerm = document.getElementById('club-search').value.toLowerCase();
       grid.innerHTML = '';
 
       const filtered = clubsData.filter(c => {
-        const matchesCat = (currentCategory === 'all') || (c.category === currentCategory);
+        if (currentCategory === 'active_only' && !c.is_active) return false;
+        const matchesCat = (currentCategory === 'all' || currentCategory === 'active_only') || (c.category === currentCategory);
         const matchesSearch = (c.name || '').toLowerCase().includes(searchTerm) || (c.desc || '').toLowerCase().includes(searchTerm);
         return matchesCat && matchesSearch;
       });
 
-      document.getElementById('club-count').innerText = `${filtered.length} CLUBS READY`;
+      document.getElementById('club-count').innerText = `${filtered.length} CLUBS DISPLAYED`;
 
       filtered.forEach(club => {
         const isSelected = club.id === selectedClubId;
         const card = document.createElement('button');
         card.onclick = () => selectClub(club.id, true);
-        card.className = `p-2.5 rounded-xl border bg-slate-800/60 hover:bg-slate-800 transition text-left flex flex-col justify-between group h-24 sm:h-28 relative overflow-hidden min-h-[80px] ${isSelected ? 'club-card-selected border-brand-500' : 'border-slate-700/70'}`;
+        
+        // Visual Styling for Inactive/Host Needed Clubs vs Active Clubs
+        const activeStyles = club.is_active 
+          ? 'bg-slate-800/60 border-slate-700/70 hover:bg-slate-800' 
+          : 'bg-slate-900/80 border-amber-500/30 opacity-75 hover:opacity-100 hover:bg-slate-800/80';
+
+        card.className = `p-2.5 rounded-xl border transition text-left flex flex-col justify-between group h-24 sm:h-28 relative overflow-hidden min-h-[80px] ${activeStyles} ${isSelected ? 'club-card-selected border-brand-500' : ''}`;
 
         card.innerHTML = `
           <div class="flex items-start justify-between w-full">
-            <div class="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-gradient-to-br ${club.color || 'from-brand-600 to-slate-800'} flex items-center justify-center text-white shadow-sm shrink-0">
+            <div class="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-gradient-to-br ${club.is_active ? (club.color || 'from-brand-600 to-slate-800') : 'from-amber-600 to-slate-800'} flex items-center justify-center text-white shadow-sm shrink-0">
               <i data-lucide="${club.icon || 'star'}" class="w-3.5 h-3.5 sm:w-4 sm:h-4"></i>
             </div>
-            <span class="text-[8px] sm:text-[9px] font-bold uppercase tracking-wider text-slate-400 bg-slate-900/80 px-1.5 py-0.5 rounded border border-slate-700/50 truncate max-w-[60px] sm:max-w-none">${club.ages || 'All Ages'}</span>
+            <span class="text-[8px] sm:text-[9px] font-bold uppercase tracking-wider ${club.is_active ? 'text-slate-400 bg-slate-900/80 border-slate-700/50' : 'text-amber-300 bg-amber-500/20 border-amber-500/30'} px-1.5 py-0.5 rounded border truncate max-w-[70px] sm:max-w-none">
+              ${club.is_active ? (club.ages || 'All Ages') : 'Needs Host'}
+            </span>
           </div>
           <div>
             <h4 class="font-bold text-white text-[11px] sm:text-xs leading-tight line-clamp-1 group-hover:text-brand-300 transition">${club.name}</h4>
-            <span class="text-[9px] sm:text-[10px] text-slate-400 block truncate">${club.status || 'Active'}</span>
+            <span class="text-[9px] sm:text-[10px] ${club.is_active ? 'text-slate-400' : 'text-amber-400 font-semibold'} block truncate">
+              ${club.is_active ? (club.status || 'Active') : 'Inactive - Looking for Host'}
+            </span>
           </div>
         `;
         grid.appendChild(card);
@@ -479,17 +496,27 @@
       const club = clubsData.find(c => c.id === id);
       if (!club) return;
 
+      // Update Header Badge on Stage
+      const badgeContainer = document.getElementById('spotlight-status-badge');
+      if (club.is_active) {
+        badgeContainer.className = "text-xs font-mono text-emerald-400 flex items-center gap-1";
+        badgeContainer.innerHTML = `<span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span> Active`;
+      } else {
+        badgeContainer.className = "text-xs font-mono text-amber-400 flex items-center gap-1";
+        badgeContainer.innerHTML = `<span class="w-2 h-2 rounded-full bg-amber-400"></span> Looking for Host`;
+      }
+
       const stage = document.getElementById('spotlight-card');
       stage.innerHTML = `
         <div class="flex items-center gap-3 sm:gap-4">
-          <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-gradient-to-br ${club.color || 'from-brand-600 to-slate-800'} flex items-center justify-center text-white shadow-lg shrink-0 border border-white/20">
+          <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-gradient-to-br ${club.is_active ? (club.color || 'from-brand-600 to-slate-800') : 'from-amber-600 to-slate-800'} flex items-center justify-center text-white shadow-lg shrink-0 border border-white/20">
             <i data-lucide="${club.icon || 'star'}" class="w-6 h-6 sm:w-7 sm:h-7"></i>
           </div>
           <div>
             <h2 class="text-lg sm:text-xl font-black text-white leading-tight uppercase tracking-wide">${club.name}</h2>
             <div class="flex items-center gap-2 mt-1">
               <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-brand-500/20 text-brand-300 border border-brand-500/30">${club.ages || 'All Ages'}</span>
-              <span class="text-[10px] font-medium text-slate-400">${club.status || 'Active'}</span>
+              <span class="text-[10px] font-medium ${club.is_active ? 'text-slate-400' : 'text-amber-400 font-bold'}">${club.is_active ? (club.status || 'Active') : 'Dormant / Needs Host'}</span>
             </div>
           </div>
         </div>
@@ -498,7 +525,6 @@
           ${club.desc || 'No description available.'}
         </p>
 
-        <!-- Dynamic Structure & Cost Pills pulled straight from CSV -->
         <div class="grid grid-cols-2 gap-2 text-[11px] pt-1">
           <div class="bg-slate-800/80 p-2.5 rounded-lg border border-slate-700/50">
             <span class="block text-slate-500 text-[10px] font-semibold uppercase">Structure</span>
@@ -511,11 +537,18 @@
         </div>
 
         <div class="pt-2 flex flex-col sm:flex-row gap-2">
-          <button onclick="openFundingModal('${club.name}')" class="w-full py-3 bg-brand-600 hover:bg-brand-700 text-white font-bold rounded-xl text-xs transition flex items-center justify-center gap-1.5 shadow min-h-[48px]">
-            <i data-lucide="coins" class="w-4 h-4"></i>
-            <span>Request Funds for ${club.name.split(' ')[0]}</span>
-          </button>
-          <a href="/#discord" class="w-full py-3 bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 font-semibold rounded-xl text-xs transition flex items-center justify-center gap-1.5 min-h-[48px]">
+          ${club.is_active ? `
+            <button onclick="openFundingModal('${club.name}', 'funding')" class="w-full py-3 bg-brand-600 hover:bg-brand-700 text-white font-bold rounded-xl text-xs transition flex items-center justify-center gap-1.5 shadow min-h-[48px]">
+              <i data-lucide="coins" class="w-4 h-4"></i>
+              <span>Request Funds for ${club.name.split(' ')[0]}</span>
+            </button>
+          ` : `
+            <button onclick="openFundingModal('${club.name}', 'host')" class="w-full py-3 bg-amber-600 hover:bg-amber-700 text-white font-bold rounded-xl text-xs transition flex items-center justify-center gap-1.5 shadow min-h-[48px]">
+              <i data-lucide="user-plus" class="w-4 h-4"></i>
+              <span>Offer to Host ${club.name}</span>
+            </button>
+          `}
+          <a href="index.html#discord" class="w-full py-3 bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 font-semibold rounded-xl text-xs transition flex items-center justify-center gap-1.5 min-h-[48px]">
             <i data-lucide="message-square" class="w-4 h-4 text-sky-400"></i>
             <span>Ask in Discord</span>
           </a>
@@ -534,9 +567,9 @@
     function setCategoryFilter(cat, btn) {
       currentCategory = cat;
       document.querySelectorAll('.cat-btn').forEach(b => {
-        b.className = 'cat-btn px-3.5 py-2 rounded-xl text-xs font-semibold bg-slate-800/80 text-slate-300 hover:text-white border border-slate-700/60 shrink-0 min-h-[40px]';
+        b.className = 'cat-btn px-3 py-2 rounded-xl text-xs font-semibold bg-slate-800/80 text-slate-300 hover:text-white border border-slate-700/60 shrink-0 min-h-[40px]';
       });
-      btn.className = 'cat-btn px-3.5 py-2 rounded-xl text-xs font-semibold bg-brand-600 text-white shrink-0 min-h-[40px]';
+      btn.className = 'cat-btn px-3 py-2 rounded-xl text-xs font-semibold bg-brand-600 text-white shrink-0 min-h-[40px]';
       renderGrid();
     }
 
@@ -549,11 +582,21 @@
       menu.classList.toggle('hidden');
     }
 
-    function openFundingModal(prefillClubName = '') {
-      if (prefillClubName) {
-        const input = document.getElementById('modal-club-input');
-        if (input) input.value = prefillClubName;
+    function openFundingModal(prefillClubName = '', mode = 'funding') {
+      const input = document.getElementById('modal-club-input');
+      const title = document.getElementById('modal-title');
+      const purpose = document.getElementById('modal-purpose-input');
+
+      if (input && prefillClubName) input.value = prefillClubName;
+
+      if (mode === 'host') {
+        if (title) title.innerText = "Become a FAHA Club Host";
+        if (purpose) purpose.placeholder = "I would like to host this club! My proposed schedule, location, or ideas are...";
+      } else {
+        if (title) title.innerText = "Member Club Funding Request";
+        if (purpose) purpose.placeholder = "Describe what these funds will be used for...";
       }
+
       document.getElementById('funding-modal').classList.remove('hidden');
     }
 
@@ -577,7 +620,7 @@
           mode: 'no-cors',
           body: formData
         });
-        alert("Your funding request has been submitted to the FAHA Board!");
+        alert("Your request has been submitted to the FAHA Board!");
         form.reset();
         closeFundingModal();
       } catch (err) {
@@ -586,7 +629,7 @@
         closeFundingModal();
       } finally {
         submitBtn.disabled = false;
-        submitBtn.innerText = "Submit Funding Request";
+        submitBtn.innerText = "Submit Request";
       }
     }
 
