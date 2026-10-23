@@ -79,8 +79,8 @@
   <header class="sticky top-0 z-40 bg-slate-900/95 backdrop-blur border-b border-slate-800">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 md:h-20 flex items-center justify-between">
       
-      <!-- Logo -> Root Relative Homepage Link -->
-      <a href="/" class="flex items-center gap-2.5">
+      <!-- Logo -> Links to index.html -->
+      <a href="index.html" class="flex items-center gap-2.5">
         <img src="FaHaLogoSource PNG.jpg" alt="FAHA Logo" class="h-9 sm:h-12 w-auto object-contain brightness-125" onerror="this.onerror=null; this.classList.add('hidden'); document.getElementById('logo-text-fallback').classList.remove('hidden');">
         <div id="logo-text-fallback" class="hidden">
           <span class="text-xl md:text-2xl font-black tracking-tight text-brand-500">FAHA</span>
@@ -88,14 +88,14 @@
         </div>
       </a>
 
-      <!-- Desktop Nav -> Root Relative Links -->
+      <!-- Desktop Nav -> Links to index.html sections -->
       <nav class="hidden md:flex items-center gap-6 font-medium text-slate-300 text-sm">
-        <a href="/" class="hover:text-brand-500 transition py-2">Home</a>
-        <a href="/#structure" class="hover:text-brand-500 transition py-2">How We Work</a>
-        <a href="/clubs.html" class="text-brand-500 font-bold py-2 border-b-2 border-brand-500">Club Select</a>
-        <a href="/#board" class="hover:text-brand-500 transition py-2">Leadership</a>
-        <a href="/#scholarships" class="hover:text-brand-500 transition py-2">Trip Scholarships</a>
-        <a href="/#discord" class="hover:text-brand-500 transition py-2">Discord</a>
+        <a href="index.html" class="hover:text-brand-500 transition py-2">Home</a>
+        <a href="index.html#structure" class="hover:text-brand-500 transition py-2">How We Work</a>
+        <a href="clubs.html" class="text-brand-500 font-bold py-2 border-b-2 border-brand-500">Club Select</a>
+        <a href="index.html#board" class="hover:text-brand-500 transition py-2">Leadership</a>
+        <a href="index.html#scholarships" class="hover:text-brand-500 transition py-2">Trip Scholarships</a>
+        <a href="index.html#discord" class="hover:text-brand-500 transition py-2">Discord</a>
       </nav>
 
       <!-- Header Action Buttons -->
@@ -116,11 +116,11 @@
 
     <!-- Mobile Nav Dropdown -->
     <div id="mobile-menu" class="hidden md:hidden bg-slate-900 border-b border-slate-800 px-4 pt-3 pb-5 space-y-3 text-base font-medium">
-      <a href="/" onclick="toggleMobileMenu()" class="block py-2 text-slate-300 hover:text-brand-500">Home</a>
-      <a href="/clubs.html" onclick="toggleMobileMenu()" class="block py-2 text-brand-500 font-bold">Club Select</a>
-      <a href="/#board" onclick="toggleMobileMenu()" class="block py-2 text-slate-300 hover:text-brand-500">Leadership</a>
-      <a href="/#scholarships" onclick="toggleMobileMenu()" class="block py-2 text-slate-300 hover:text-brand-500">Trip Scholarships</a>
-      <a href="/#discord" onclick="toggleMobileMenu()" class="block py-2 text-slate-300 hover:text-brand-500">Discord Community</a>
+      <a href="index.html" onclick="toggleMobileMenu()" class="block py-2 text-slate-300 hover:text-brand-500">Home</a>
+      <a href="clubs.html" onclick="toggleMobileMenu()" class="block py-2 text-brand-500 font-bold">Club Select</a>
+      <a href="index.html#board" onclick="toggleMobileMenu()" class="block py-2 text-slate-300 hover:text-brand-500">Leadership</a>
+      <a href="index.html#scholarships" onclick="toggleMobileMenu()" class="block py-2 text-slate-300 hover:text-brand-500">Trip Scholarships</a>
+      <a href="index.html#discord" onclick="toggleMobileMenu()" class="block py-2 text-slate-300 hover:text-brand-500">Discord Community</a>
       <div class="pt-2 flex flex-col gap-2.5">
         <button onclick="toggleMobileMenu(); openFundingModal();" class="w-full text-center py-3 text-sm font-bold text-brand-300 bg-brand-500/10 rounded-xl border border-brand-500/30 min-h-[48px]">
           Request Club Funding
@@ -131,7 +131,7 @@
       </div>
     </div>
   </header>
-
+  
   <!-- CLUB SELECT HEADER & FILTER BAR -->
   <section class="relative pt-6 pb-4 bg-gradient-to-b from-slate-900 via-slate-900/90 to-slate-950 border-b border-slate-800/80">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
