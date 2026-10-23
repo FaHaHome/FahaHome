@@ -537,6 +537,17 @@
           </div>
         </div>
 
+        <!-- Dynamic FAHA Inventory / Supplies On-Hand -->
+        ${club.resources ? `
+          <div class="bg-amber-500/10 border border-amber-500/30 p-3 rounded-xl flex items-start gap-2.5 text-xs">
+            <i data-lucide="box" class="w-4 h-4 text-amber-400 shrink-0 mt-0.5"></i>
+            <div>
+              <span class="block text-[10px] font-bold uppercase tracking-wider text-amber-300">FAHA On-Hand Supplies</span>
+              <p class="text-slate-300 text-[11px] leading-snug mt-0.5">${club.resources}</p>
+            </div>
+          </div>
+        ` : ''}
+
         <div class="pt-2 flex flex-col sm:flex-row gap-2">
           ${club.is_active ? `
             <button onclick="openFundingModal('${club.name}', 'funding')" class="w-full py-3 bg-brand-600 hover:bg-brand-700 text-white font-bold rounded-xl text-xs transition flex items-center justify-center gap-1.5 shadow min-h-[48px]">
