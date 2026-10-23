@@ -79,8 +79,8 @@
   <header class="sticky top-0 z-40 bg-slate-900/95 backdrop-blur border-b border-slate-800">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 md:h-20 flex items-center justify-between">
       
-      <!-- Logo -->
-      <a href="index.html" class="flex items-center gap-2.5">
+      <!-- Logo -> Root Relative Homepage Link -->
+      <a href="/" class="flex items-center gap-2.5">
         <img src="FaHaLogoSource PNG.jpg" alt="FAHA Logo" class="h-9 sm:h-12 w-auto object-contain brightness-125" onerror="this.onerror=null; this.classList.add('hidden'); document.getElementById('logo-text-fallback').classList.remove('hidden');">
         <div id="logo-text-fallback" class="hidden">
           <span class="text-xl md:text-2xl font-black tracking-tight text-brand-500">FAHA</span>
@@ -88,14 +88,14 @@
         </div>
       </a>
 
-      <!-- Desktop Nav -->
+      <!-- Desktop Nav -> Root Relative Links -->
       <nav class="hidden md:flex items-center gap-6 font-medium text-slate-300 text-sm">
-        <a href="index.html" class="hover:text-brand-500 transition py-2">Home</a>
-        <a href="index.html#structure" class="hover:text-brand-500 transition py-2">How We Work</a>
-        <a href="clubs.html" class="text-brand-500 font-bold py-2 border-b-2 border-brand-500">Club Select</a>
-        <a href="index.html#board" class="hover:text-brand-500 transition py-2">Leadership</a>
-        <a href="index.html#scholarships" class="hover:text-brand-500 transition py-2">Trip Scholarships</a>
-        <a href="index.html#discord" class="hover:text-brand-500 transition py-2">Discord</a>
+        <a href="/" class="hover:text-brand-500 transition py-2">Home</a>
+        <a href="/#structure" class="hover:text-brand-500 transition py-2">How We Work</a>
+        <a href="/clubs.html" class="text-brand-500 font-bold py-2 border-b-2 border-brand-500">Club Select</a>
+        <a href="/#board" class="hover:text-brand-500 transition py-2">Leadership</a>
+        <a href="/#scholarships" class="hover:text-brand-500 transition py-2">Trip Scholarships</a>
+        <a href="/#discord" class="hover:text-brand-500 transition py-2">Discord</a>
       </nav>
 
       <!-- Header Action Buttons -->
@@ -116,11 +116,11 @@
 
     <!-- Mobile Nav Dropdown -->
     <div id="mobile-menu" class="hidden md:hidden bg-slate-900 border-b border-slate-800 px-4 pt-3 pb-5 space-y-3 text-base font-medium">
-      <a href="index.html" onclick="toggleMobileMenu()" class="block py-2 text-slate-300 hover:text-brand-500">Home</a>
-      <a href="clubs.html" onclick="toggleMobileMenu()" class="block py-2 text-brand-500 font-bold">Club Select</a>
-      <a href="index.html#board" onclick="toggleMobileMenu()" class="block py-2 text-slate-300 hover:text-brand-500">Leadership</a>
-      <a href="index.html#scholarships" onclick="toggleMobileMenu()" class="block py-2 text-slate-300 hover:text-brand-500">Trip Scholarships</a>
-      <a href="index.html#discord" onclick="toggleMobileMenu()" class="block py-2 text-slate-300 hover:text-brand-500">Discord Community</a>
+      <a href="/" onclick="toggleMobileMenu()" class="block py-2 text-slate-300 hover:text-brand-500">Home</a>
+      <a href="/clubs.html" onclick="toggleMobileMenu()" class="block py-2 text-brand-500 font-bold">Club Select</a>
+      <a href="/#board" onclick="toggleMobileMenu()" class="block py-2 text-slate-300 hover:text-brand-500">Leadership</a>
+      <a href="/#scholarships" onclick="toggleMobileMenu()" class="block py-2 text-slate-300 hover:text-brand-500">Trip Scholarships</a>
+      <a href="/#discord" onclick="toggleMobileMenu()" class="block py-2 text-slate-300 hover:text-brand-500">Discord Community</a>
       <div class="pt-2 flex flex-col gap-2.5">
         <button onclick="toggleMobileMenu(); openFundingModal();" class="w-full text-center py-3 text-sm font-bold text-brand-300 bg-brand-500/10 rounded-xl border border-brand-500/30 min-h-[48px]">
           Request Club Funding
@@ -177,423 +177,22 @@
             <i data-lucide="layout-grid" class="w-4 h-4 text-brand-500"></i>
             Active Roster
           </span>
-          <span id="club-count" class="text-xs text-slate-500 font-mono">CONNECTING...</span>
+          <span id="club-count" class="text-xs text-slate-500 font-mono">LOADING ROSTER...</span>
         </div>
 
         <!-- The Smash Grid -->
         <div id="club-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2.5 max-h-[60vh] lg:max-h-[70vh] overflow-y-auto no-scrollbar p-1">
-          <!-- Populated by JavaScript Spinner Preloader -->
+          <!-- Dynamically populated -->
         </div>
       </div>
 
-      <!-- SPOTLIGHT STAGE (Right 5 Cols on Desktop - Fixed & Sticky) -->
+      <!-- SPOTLIGHT STAGE (Right 5 Cols on Desktop) -->
       <div id="spotlight-stage-anchor" class="lg:col-span-5 lg:sticky lg:top-24 pt-2 lg:pt-0">
         <div class="bg-gradient-to-b from-slate-800/95 to-slate-900 border-2 border-brand-500/50 rounded-2xl p-5 shadow-2xl relative overflow-hidden backdrop-blur">
           
-          <!-- Background Decorative Glow -->
+          <!-- Background Glow -->
           <div class="absolute -top-16 -right-16 w-32 h-32 bg-brand-500/20 rounded-full blur-2xl pointer-events-none"></div>
 
-          <!-- Header -->
+          <!-- Stage Header -->
           <div class="flex items-center justify-between border-b border-slate-700/80 pb-3 mb-4">
-            <span class="inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-widest text-brand-400 bg-brand-500/10 px-2.5 py-1 rounded-full border border-brand-500/20">
-              <i data-lucide="sparkles" class="w-3 h-3"></i>
-              Spotlight Stage
-            </span>
-            <span class="text-xs font-mono text-emerald-400 flex items-center gap-1">
-              <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span> Active Club
-            </span>
-          </div>
-
-          <!-- Dynamic Spotlight Stage Container -->
-          <div id="spotlight-card" class="space-y-4">
-            <!-- Loaded smoothly by JavaScript -->
-          </div>
-
-        </div>
-      </div>
-
-    </div>
-  </main>
-
-  <!-- FOOTER -->
-  <footer class="mt-auto bg-slate-950 text-slate-400 py-8 border-t border-slate-800/80 text-xs">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-4 text-center md:text-left">
-      <div>
-        <p class="font-bold text-slate-300">Fredericksburg Area Homeschool Association</p>
-        <p class="text-slate-500 mt-0.5">10408 Courthouse Rd, PMB #42, Spotsylvania, VA 22553</p>
-      </div>
-      <div class="flex items-center gap-4 text-slate-400">
-        <a href="index.html" class="hover:text-white transition py-1">Home</a>
-        <a href="index.html#funding" class="hover:text-white transition py-1">Request Funds</a>
-        <a href="mailto:info@fahahome.com" class="hover:text-white transition py-1">info@fahahome.com</a>
-      </div>
-      <p class="text-slate-600">&copy; <script>document.write(new Date().getFullYear())</script> FAHA 501(c)(3)</p>
-    </div>
-  </footer>
-
-  <!-- CLUB FUNDING REQUEST MODAL -->
-  <div id="funding-modal" class="fixed inset-0 z-50 hidden bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-4">
-    <div class="bg-slate-900 text-slate-100 w-full max-w-lg rounded-2xl overflow-hidden shadow-2xl border border-slate-800 p-6 max-h-[90vh] overflow-y-auto">
-      
-      <div class="flex items-center justify-between border-b border-slate-800 pb-3 mb-4">
-        <div>
-          <h3 class="font-bold text-white text-base">Member Club Funding Request</h3>
-          <p class="text-xs text-slate-400">Submit budget requests for club supplies, venues, or materials.</p>
-        </div>
-        <button onclick="closeFundingModal()" aria-label="Close modal" class="text-slate-400 hover:text-white p-1 min-h-[44px] min-w-[44px] flex items-center justify-center">
-          <i data-lucide="x" class="w-5 h-5"></i>
-        </button>
-      </div>
-
-      <form id="funding-form" onsubmit="handleFundingSubmit(event)" class="space-y-3.5 text-xs">
-        <div>
-          <label class="block font-semibold text-slate-300 mb-1">Club / Group Name *</label>
-          <input type="text" id="modal-club-input" name="club_name" required placeholder="e.g. FAHA Robotics Club" class="w-full px-3 py-2.5 bg-slate-800 border border-slate-700 rounded-lg text-white focus:ring-2 focus:ring-brand-500 outline-none text-sm min-h-[44px]">
-        </div>
-
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-          <div>
-            <label class="block font-semibold text-slate-300 mb-1">Contact Person Name *</label>
-            <input type="text" name="contact_name" required class="w-full px-3 py-2.5 bg-slate-800 border border-slate-700 rounded-lg text-white focus:ring-2 focus:ring-brand-500 outline-none text-sm min-h-[44px]">
-          </div>
-          <div>
-            <label class="block font-semibold text-slate-300 mb-1">Contact Email *</label>
-            <input type="email" name="contact_email" required class="w-full px-3 py-2.5 bg-slate-800 border border-slate-700 rounded-lg text-white focus:ring-2 focus:ring-brand-500 outline-none text-sm min-h-[44px]">
-          </div>
-        </div>
-
-        <div>
-          <label class="block font-semibold text-slate-300 mb-1">Amount Requested ($) *</label>
-          <input type="number" name="amount_requested" required min="1" step="any" placeholder="150.00" class="w-full px-3 py-2.5 bg-slate-800 border border-slate-700 rounded-lg text-white focus:ring-2 focus:ring-brand-500 outline-none text-sm min-h-[44px]">
-        </div>
-
-        <div>
-          <label class="block font-semibold text-slate-300 mb-1">Purpose & Description *</label>
-          <textarea name="purpose" rows="3" required placeholder="Describe what these funds will be used for..." class="w-full px-3 py-2.5 bg-slate-800 border border-slate-700 rounded-lg text-white focus:ring-2 focus:ring-brand-500 outline-none text-sm"></textarea>
-        </div>
-
-        <div>
-          <label class="block font-semibold text-slate-300 mb-1">Itemized Cost Breakdown</label>
-          <textarea name="itemized_costs" rows="2" placeholder="e.g. 5x Kits ($20 ea), Venue Rental ($50)" class="w-full px-3 py-2.5 bg-slate-800 border border-slate-700 rounded-lg text-white focus:ring-2 focus:ring-brand-500 outline-none text-sm"></textarea>
-        </div>
-
-        <button id="funding-submit-btn" type="submit" class="w-full py-3.5 bg-brand-600 text-white font-bold rounded-xl hover:bg-brand-700 transition text-sm min-h-[48px] shadow">
-          Submit Funding Request
-        </button>
-      </form>
-    </div>
-  </div>
-
-  <!-- JAVASCRIPT DATA & INTERACTION SCRIPT -->
-  <script>
-    const GOOGLE_SCRIPT_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbzdf48ZUCOOdFwE9N54QIUAJRbfzviZQYFHosPFVICgn21AL5k7i5K609FJGBV5PSs2/exec";
-    
-    // PASTE YOUR PUBLISHED GOOGLE SHEET EXPORT URL HERE:
-    const GOOGLE_SHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/YOUR_SHEET_ID_HERE/export?format=csv";
-
-    // Backup static roster (Loaded ONLY if fetching Google Sheet fails)
-    const backupClubsData = [
-      { id: 'art', name: 'Art Studio', category: 'arts', icon: 'palette', color: 'from-purple-500 to-indigo-600', ages: 'All Ages', status: 'Active', desc: 'Creative exploration across drawing, painting, mixed media, and group projects hosted by member parents.', structure: 'Member Parent Led', cost: '100% FAHA Funded' },
-      { id: 'boardgames', name: 'Board Games', category: 'games', icon: 'dices', color: 'from-amber-500 to-orange-600', ages: 'Elem - Teen', status: 'Active', desc: 'Strategy, tabletop, and cooperative games designed to build social connections, logical reasoning, and teamwork.', structure: 'Member Parent Led', cost: '100% FAHA Funded' },
-      { id: 'chess', name: 'Chess Club', category: 'games', icon: 'crown', color: 'from-emerald-500 to-teal-700', ages: 'All Ages', status: 'Active', desc: 'Led by board member Tristan Hinz, focusing on casual play, tactical drills, and friendly tournaments.', structure: 'Member Parent Led', cost: '100% FAHA Funded' },
-      { id: 'cosplay', name: 'Cosplay & Costume', category: 'arts', icon: 'scissors', color: 'from-pink-500 to-rose-600', ages: 'Tweens/Teens', status: 'Active', desc: 'Prop-making, sewing, and costume craft workshops for creative youth interested in character design.', structure: 'Member Parent Led', cost: '100% FAHA Funded' },
-      { id: 'dnd', name: 'D&D / TTRPG', category: 'games', icon: 'swords', color: 'from-red-600 to-amber-700', ages: 'Tweens/Teens', status: 'Active', desc: 'Tabletop roleplaying campaigns emphasizing collaborative storytelling, character building, and creative problem solving.', structure: 'Member Parent Led', cost: '100% FAHA Funded' },
-      { id: 'engineering', name: 'Adaptive Toys & Eng.', category: 'games', icon: 'cpu', color: 'from-blue-600 to-cyan-600', ages: 'Middle/High', status: 'Special Project', desc: 'Hands-on engineering workshops adapting toys and electronics for accessibility while teaching basic circuits.', structure: 'Member Parent Led', cost: '100% FAHA Funded' },
-      { id: 'pno', name: 'Parents Night Out', category: 'social', icon: 'moon', color: 'from-indigo-600 to-slate-800', ages: 'Parents/Adult', status: 'Community', desc: 'Casual social gatherings for homeschool parents to connect, share resources, and unwind.', structure: 'Member Parent Led', cost: '100% FAHA Funded' },
-      { id: 'theater', name: 'Theater & Drama', category: 'arts', icon: 'clapperboard', color: 'from-yellow-500 to-amber-600', ages: 'All Ages', status: 'Active', desc: 'Improv exercises, stagecraft, script readings, and small ensemble performances.', structure: 'Member Parent Led', cost: '100% FAHA Funded' },
-      { id: 'wildschooling', name: 'WildSchooling', category: 'social', icon: 'trees', color: 'from-emerald-600 to-green-700', ages: 'All Ages', status: 'Active Outdoor', desc: 'Outdoor nature immersive exploration, foraging basics, seasonal tracking, and unstructured outdoor community.', structure: 'Member Parent Led', cost: '100% FAHA Funded' },
-      { id: 'potlucks', name: 'Community Potlucks', category: 'social', icon: 'utensils', color: 'from-orange-500 to-red-500', ages: 'Whole Family', status: 'Monthly', desc: 'Regular shared meal gatherings open to all member families to foster community ties.', structure: 'Member Parent Led', cost: '100% FAHA Funded' },
-      { id: 'dances', name: 'Fall Ball & Spring Fling', category: 'social', icon: 'music', color: 'from-fuchsia-600 to-purple-700', ages: 'Middle/High', status: 'Seasonal Dances', desc: 'FAHA\'s flagship youth dances providing a safe, secular, inclusive formal dance experience for homeschoolers.', structure: 'Member Parent Led', cost: '100% FAHA Funded' },
-      { id: 'modelun', name: 'Model UN', category: 'social', icon: 'globe', color: 'from-sky-600 to-blue-700', ages: 'Teens/High', status: 'Active', desc: 'Diplomacy, public speaking, research, and global policy simulations preparing students for regional conferences.', structure: 'Member Parent Led', cost: '100% FAHA Funded' },
-      { id: 'lego', name: 'Lego Club', category: 'games', icon: 'blocks', color: 'from-yellow-400 to-red-500', ages: 'Elem / All', status: 'Active', desc: 'Free-build challenges, engineering prompts, and collaborative building sessions.', structure: 'Member Parent Led', cost: '100% FAHA Funded' },
-      { id: 'parkday', name: 'Park Day', category: 'social', icon: 'sun', color: 'from-amber-400 to-emerald-500', ages: 'Whole Family', status: 'Weekly Gathering', desc: 'Weekly outdoor park meetups for casual play, parent connection, and physical activity.', structure: 'Member Parent Led', cost: '100% FAHA Funded' },
-      { id: 'retrogaming', name: 'Retro Gaming', category: 'games', icon: 'gamepad-2', color: 'from-violet-600 to-indigo-800', ages: 'All Ages', status: 'Active', desc: 'Classic console gaming, arcade history, and multiplayer couch co-op gaming sessions.', structure: 'Member Parent Led', cost: '100% FAHA Funded' },
-      { id: 'history', name: 'History Club', category: 'social', icon: 'landmark', color: 'from-stone-600 to-slate-700', ages: 'Middle/High', status: 'Active', desc: 'Deep dives into historical eras, primary source analysis, historical reenactment, and museum visits.', structure: 'Member Parent Led', cost: '100% FAHA Funded' },
-      { id: 'minecraft', name: 'Minecraft Club', category: 'games', icon: 'box', color: 'from-green-600 to-emerald-800', ages: 'All Ages', status: 'Digital/In-Person', desc: 'Private FAHA server multiplayer building, redstone mechanics, and team survival challenges.', structure: 'Member Parent Led', cost: '100% FAHA Funded' },
-      { id: 'fieldtrips', name: 'Field Trips', category: 'social', icon: 'compass', color: 'from-teal-600 to-cyan-700', ages: 'Whole Family', status: 'Regular Outings', desc: 'Group visits to science centers, historical sites, farms, factories, and theaters with scholarship access.', structure: 'Member Parent Led', cost: '100% FAHA Funded' },
-      { id: 'yovaso', name: 'YOVASO Youth', category: 'social', icon: 'shield-alert', color: 'from-rose-600 to-red-700', ages: 'Teens', status: 'Safety Initiative', desc: 'Youth of Virginia Speak Out peer safety, leadership development, and community advocacy.', structure: 'Member Parent Led', cost: '100% FAHA Funded' },
-      { id: 'actionsports', name: 'Action Sports', category: 'social', icon: 'bike', color: 'from-lime-600 to-emerald-700', ages: 'All Ages', status: 'Active', desc: 'Skatepark meetups, biking trips, roller skating, and energetic movement groups.', structure: 'Member Parent Led', cost: '100% FAHA Funded' },
-      { id: 'playdates', name: 'Littles Playdates', category: 'social', icon: 'smile', color: 'from-sky-400 to-indigo-500', ages: 'Preschool/Early Elem', status: 'Active', desc: 'Gentle, structured playtimes geared specifically for young learners and early homeschool parents.', structure: 'Member Parent Led', cost: '100% FAHA Funded' },
-      { id: 'writing', name: 'Writing Workshop', category: 'arts', icon: 'feather', color: 'from-amber-600 to-yellow-700', ages: 'Middle/High', status: 'Active', desc: 'Creative writing prompts, peer feedback circles, essay guidance, and NaNoWriMo support.', structure: 'Member Parent Led', cost: '100% FAHA Funded' }
-    ];
-
-    let clubsData = [];
-    let currentCategory = 'all';
-    let selectedClubId = '';
-
-    // Show smooth preloader before CSV finishes downloading
-    function showLoadingState() {
-      const grid = document.getElementById('club-grid');
-      const stage = document.getElementById('spotlight-card');
-      
-      grid.innerHTML = `
-        <div class="col-span-full py-16 text-center text-slate-400 text-xs flex flex-col items-center justify-center gap-3">
-          <i data-lucide="loader-2" class="w-7 h-7 animate-spin text-brand-500"></i>
-          <span class="font-medium tracking-wide">Loading FAHA Club Directory...</span>
-        </div>
-      `;
-      
-      stage.innerHTML = `
-        <div class="animate-pulse space-y-4">
-          <div class="flex items-center gap-3">
-            <div class="w-12 h-12 rounded-2xl bg-slate-800"></div>
-            <div class="space-y-2">
-              <div class="h-4 w-32 bg-slate-800 rounded"></div>
-              <div class="h-3 w-20 bg-slate-800 rounded"></div>
-            </div>
-          </div>
-          <div class="h-16 bg-slate-800/60 rounded-xl"></div>
-        </div>
-      `;
-      lucide.createIcons();
-    }
-
-    // Advanced CSV Parser (Handles multi-line quotes and free-text fields cleanly)
-    function parseCSV(text) {
-      const rows = [];
-      let row = [];
-      let curr = '';
-      let inQuotes = false;
-
-      for (let i = 0; i < text.length; i++) {
-        const c = text[i];
-        const next = text[i + 1];
-
-        if (c === '"') {
-          if (inQuotes && next === '"') { curr += '"'; i++; } 
-          else { inQuotes = !inQuotes; }
-        } else if (c === ',' && !inQuotes) {
-          row.push(curr.trim());
-          curr = '';
-        } else if ((c === '\r' || c === '\n') && !inQuotes) {
-          if (c === '\r' && next === '\n') { i++; }
-          row.push(curr.trim());
-          if (row.some(val => val !== '')) rows.push(row);
-          row = [];
-          curr = '';
-        } else {
-          curr += c;
-        }
-      }
-      if (curr !== '' || row.length > 0) {
-        row.push(curr.trim());
-        if (row.some(val => val !== '')) rows.push(row);
-      }
-
-      if (rows.length < 2) return [];
-
-      const headers = rows[0].map(h => h.toLowerCase().replace(/^"(.*)"$/, '$1').trim());
-      const parsedData = [];
-
-      for (let r = 1; r < rows.length; r++) {
-        const rowVals = rows[r];
-        const item = {};
-        headers.forEach((h, idx) => {
-          item[h] = rowVals[idx] ? rowVals[idx].replace(/^"(.*)"$/, '$1').trim() : '';
-        });
-
-        const isActive = !item.active || ['true', 'yes', '1', ''].includes(item.active.toLowerCase());
-        if (item.id && item.name && isActive) {
-          parsedData.push(item);
-        }
-      }
-      return parsedData;
-    }
-
-    // Fetch Google Sheet live data
-    async function loadRosterFromGoogleSheet() {
-      showLoadingState();
-
-      if (!GOOGLE_SHEET_CSV_URL || GOOGLE_SHEET_CSV_URL.includes("https://docs.google.com/spreadsheets/d/1Auhpi4lgt54KrtpnE-LD0yZKA3rv1iETR3vfS0soBwA/export?format=csv")) {
-        console.warn("No Google Sheet URL set. Using backup static roster.");
-        clubsData = backupClubsData;
-        selectedClubId = clubsData[0].id;
-        renderGrid();
-        selectClub(selectedClubId, false);
-        return;
-      }
-
-      try {
-        const response = await fetch(GOOGLE_SHEET_CSV_URL, { redirect: 'follow' });
-        if (!response.ok) throw new Error(`HTTP ${response.status}`);
-        
-        const rawCsv = await response.text();
-        const parsed = parseCSV(rawCsv);
-
-        if (parsed && parsed.length > 0) {
-          clubsData = parsed;
-          selectedClubId = clubsData[0].id;
-        } else {
-          throw new Error("Parsed CSV contained no active rows.");
-        }
-      } catch (err) {
-        console.error("Failed to load Google Sheet CSV. Reverting to backup roster.", err);
-        clubsData = backupClubsData;
-        selectedClubId = clubsData[0].id;
-      } finally {
-        renderGrid();
-        selectClub(selectedClubId, false);
-      }
-    }
-
-    // Render Roster Grid
-    function renderGrid() {
-      const grid = document.getElementById('club-grid');
-      const searchTerm = document.getElementById('club-search').value.toLowerCase();
-      grid.innerHTML = '';
-
-      const filtered = clubsData.filter(c => {
-        const matchesCat = (currentCategory === 'all') || (c.category === currentCategory);
-        const matchesSearch = (c.name || '').toLowerCase().includes(searchTerm) || (c.desc || '').toLowerCase().includes(searchTerm);
-        return matchesCat && matchesSearch;
-      });
-
-      document.getElementById('club-count').innerText = `${filtered.length} CLUBS READY`;
-
-      filtered.forEach(club => {
-        const isSelected = club.id === selectedClubId;
-        const card = document.createElement('button');
-        card.onclick = () => selectClub(club.id, true);
-        card.className = `p-2.5 rounded-xl border bg-slate-800/60 hover:bg-slate-800 transition text-left flex flex-col justify-between group h-24 sm:h-28 relative overflow-hidden min-h-[80px] ${isSelected ? 'club-card-selected border-brand-500' : 'border-slate-700/70'}`;
-
-        card.innerHTML = `
-          <div class="flex items-start justify-between w-full">
-            <div class="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-gradient-to-br ${club.color || 'from-brand-600 to-slate-800'} flex items-center justify-center text-white shadow-sm shrink-0">
-              <i data-lucide="${club.icon || 'star'}" class="w-3.5 h-3.5 sm:w-4 sm:h-4"></i>
-            </div>
-            <span class="text-[8px] sm:text-[9px] font-bold uppercase tracking-wider text-slate-400 bg-slate-900/80 px-1.5 py-0.5 rounded border border-slate-700/50 truncate max-w-[60px] sm:max-w-none">${club.ages || 'All Ages'}</span>
-          </div>
-          <div>
-            <h4 class="font-bold text-white text-[11px] sm:text-xs leading-tight line-clamp-1 group-hover:text-brand-300 transition">${club.name}</h4>
-            <span class="text-[9px] sm:text-[10px] text-slate-400 block truncate">${club.status || 'Active'}</span>
-          </div>
-        `;
-        grid.appendChild(card);
-      });
-
-      lucide.createIcons();
-    }
-
-    // Select Club Stage Display
-    function selectClub(id, userInitiated = false) {
-      selectedClubId = id;
-      const club = clubsData.find(c => c.id === id);
-      if (!club) return;
-
-      const stage = document.getElementById('spotlight-card');
-      stage.innerHTML = `
-        <div class="flex items-center gap-3 sm:gap-4">
-          <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-gradient-to-br ${club.color || 'from-brand-600 to-slate-800'} flex items-center justify-center text-white shadow-lg shrink-0 border border-white/20">
-            <i data-lucide="${club.icon || 'star'}" class="w-6 h-6 sm:w-7 sm:h-7"></i>
-          </div>
-          <div>
-            <h2 class="text-lg sm:text-xl font-black text-white leading-tight uppercase tracking-wide">${club.name}</h2>
-            <div class="flex items-center gap-2 mt-1">
-              <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-brand-500/20 text-brand-300 border border-brand-500/30">${club.ages || 'All Ages'}</span>
-              <span class="text-[10px] font-medium text-slate-400">${club.status || 'Active'}</span>
-            </div>
-          </div>
-        </div>
-
-        <p class="text-xs text-slate-300 leading-relaxed bg-slate-900/60 p-3.5 rounded-xl border border-slate-700/60">
-          ${club.desc || 'No description available.'}
-        </p>
-
-        <!-- Dynamic Structure & Cost Pills pulled straight from CSV -->
-        <div class="grid grid-cols-2 gap-2 text-[11px] pt-1">
-          <div class="bg-slate-800/80 p-2.5 rounded-lg border border-slate-700/50">
-            <span class="block text-slate-500 text-[10px] font-semibold uppercase">Structure</span>
-            <span class="text-slate-200 font-medium">${club.structure || 'Member Parent Led'}</span>
-          </div>
-          <div class="bg-slate-800/80 p-2.5 rounded-lg border border-slate-700/50">
-            <span class="block text-slate-500 text-[10px] font-semibold uppercase">Cost</span>
-            <span class="text-emerald-400 font-bold">${club.cost || '100% FAHA Funded'}</span>
-          </div>
-        </div>
-
-        <div class="pt-2 flex flex-col sm:flex-row gap-2">
-          <button onclick="openFundingModal('${club.name}')" class="w-full py-3 bg-brand-600 hover:bg-brand-700 text-white font-bold rounded-xl text-xs transition flex items-center justify-center gap-1.5 shadow min-h-[48px]">
-            <i data-lucide="coins" class="w-4 h-4"></i>
-            <span>Request Funds for ${club.name.split(' ')[0]}</span>
-          </button>
-          <a href="index.html#discord" class="w-full py-3 bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 font-semibold rounded-xl text-xs transition flex items-center justify-center gap-1.5 min-h-[48px]">
-            <i data-lucide="message-square" class="w-4 h-4 text-sky-400"></i>
-            <span>Ask in Discord</span>
-          </a>
-        </div>
-      `;
-
-      renderGrid();
-      lucide.createIcons();
-
-      if (userInitiated && window.innerWidth < 1024) {
-        const anchor = document.getElementById('spotlight-stage-anchor');
-        if (anchor) anchor.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
-    }
-
-    function setCategoryFilter(cat, btn) {
-      currentCategory = cat;
-      document.querySelectorAll('.cat-btn').forEach(b => {
-        b.className = 'cat-btn px-3.5 py-2 rounded-xl text-xs font-semibold bg-slate-800/80 text-slate-300 hover:text-white border border-slate-700/60 shrink-0 min-h-[40px]';
-      });
-      btn.className = 'cat-btn px-3.5 py-2 rounded-xl text-xs font-semibold bg-brand-600 text-white shrink-0 min-h-[40px]';
-      renderGrid();
-    }
-
-    function filterClubs() {
-      renderGrid();
-    }
-
-    function toggleMobileMenu() {
-      const menu = document.getElementById('mobile-menu');
-      menu.classList.toggle('hidden');
-    }
-
-    function openFundingModal(prefillClubName = '') {
-      if (prefillClubName) {
-        const input = document.getElementById('modal-club-input');
-        if (input) input.value = prefillClubName;
-      }
-      document.getElementById('funding-modal').classList.remove('hidden');
-    }
-
-    function closeFundingModal() {
-      document.getElementById('funding-modal').classList.add('hidden');
-    }
-
-    async function handleFundingSubmit(e) {
-      e.preventDefault();
-      const form = e.target;
-      const submitBtn = document.getElementById('funding-submit-btn');
-
-      submitBtn.disabled = true;
-      submitBtn.innerText = "Submitting Request...";
-
-      const formData = new FormData(form);
-
-      try {
-        await fetch(GOOGLE_SCRIPT_WEB_APP_URL, {
-          method: 'POST',
-          mode: 'no-cors',
-          body: formData
-        });
-        alert("Your funding request has been submitted to the FAHA Board!");
-        form.reset();
-        closeFundingModal();
-      } catch (err) {
-        alert("Thank you! Your request was submitted.");
-        form.reset();
-        closeFundingModal();
-      } finally {
-        submitBtn.disabled = false;
-        submitBtn.innerText = "Submit Funding Request";
-      }
-    }
-
-    window.addEventListener('DOMContentLoaded', () => {
-      loadRosterFromGoogleSheet();
-    });
-  </script>
-</body>
-</html>
+            <span class="inline-flex items-center gap-1.5 text-[10px] font-
