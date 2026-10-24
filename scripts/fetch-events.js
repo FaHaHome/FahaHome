@@ -1,5 +1,6 @@
 const fs = require('fs');
 
+// 1. Read environment credentials
 const BOT_TOKEN = process.env.DISCORD_BOT_TOKEN;
 const GUILD_ID = process.env.DISCORD_GUILD_ID;
 const WEBHOOK_URL = process.env.DISCORD_WEBHOOK_URL;
@@ -7,6 +8,7 @@ const MESSAGE_ID = process.env.DISCORD_MESSAGE_ID;
 
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
+// Helper: Fetch Discord API events with rate-limit retry
 async function fetchEventsWithRetry() {
   const url = `https://discord.com/api/v10/guilds/${GUILD_ID}/scheduled-events`;
   const headers = {
@@ -25,7 +27,7 @@ async function fetchEventsWithRetry() {
     if (response.status === 429) {
       const data = await response.json();
       const retryAfter = Math.ceil(data.retry_after || 5);
-      console.warn(`⚠️ Rate limited by Discord. Waiting ${retryAfter} seconds before retrying...`);
+      console.warn(`⚠️ Rate limited by Discord. Waiting ${retryAfter} seconds...`);
       await sleep(retryAfter * 1000);
       continue;
     }
@@ -41,7 +43,7 @@ async function syncEvents() {
   console.log('--- Starting FAHA Calendar Sync ---');
 
   if (!BOT_TOKEN || !GUILD_ID || !WEBHOOK_URL) {
-    console.error('❌ Missing required secrets in environment (BOT_TOKEN, GUILD_ID, or WEBHOOK_URL)');
+    console.error('❌ Missing required environment secrets (BOT_TOKEN, GUILD_ID, or WEBHOOK_URL)');
     process.exit(1);
   }
 
@@ -58,40 +60,65 @@ async function syncEvents() {
 }
 
 async function updateWebhook(events) {
+  // Sort events chronologically
   events.sort((a, b) => new Date(a.scheduled_start_time) - new Date(b.scheduled_start_time));
 
-  // Build sanitized fields for up to 10 upcoming events
-  const fields = events.slice(0, 10).map((event) => {
+  const titleText = '📅 FAHA Server Scheduled Events';
+  const descText = 'Upcoming scheduled events for our community. Times automatically adjust to your local timezone!';
+  const footerText = 'FAHA Calendar Sync • Auto-updated';
+
+  // Discord global limit is 6000 chars. Target 4500 chars max for safety.
+  const MAX_TOTAL_EMBED_CHARS = 4500;
+  let currentTotalChars = titleText.length + descText.length + footerText.length;
+
+  const fields = [];
+
+  for (let i = 0; i < events.length; i++) {
+    const event = events[i];
     const startTime = Math.floor(new Date(event.scheduled_start_time).getTime() / 1000);
 
-    // Sanitize Location
+    // Sanitize location
     let location = 'Discord Server';
-    if (event.entity_metadata && event.entity_metadata.location && event.entity_metadata.location.trim() !== '') {
+    if (event.entity_metadata?.location?.trim()) {
       location = event.entity_metadata.location.trim();
     } else if (event.channel_id) {
       location = `<#${event.channel_id}>`;
     }
 
-    // Build guaranteed non-empty field value
+    // Clean description & truncate to 200 chars per event max
+    let cleanDesc = (event.description || '').trim();
+    if (cleanDesc.length > 200) {
+      cleanDesc = cleanDesc.substring(0, 197) + '...';
+    }
+
     let valueLines = [
       `⏰ <t:${startTime}:F> (<t:${startTime}:R>)`,
       `📍 **Location:** ${location}`
     ];
-
-    if (event.description && event.description.trim() !== '') {
-      valueLines.push(`📝 ${event.description.trim()}`);
+    if (cleanDesc !== '') {
+      valueLines.push(`📝 ${cleanDesc}`);
     }
 
-    // Ensure title/name is non-empty and bounded
-    const eventName = (event.name && event.name.trim() !== '') ? event.name.trim() : 'Scheduled Event';
+    const fieldName = `📌 ${(event.name || 'Scheduled Event').trim()}`.substring(0, 256);
+    const fieldValue = valueLines.join('\n').substring(0, 1024);
 
-    return {
-      name: `📌 ${eventName}`.substring(0, 256),
-      value: valueLines.join('\n').substring(0, 1024)
-    };
-  });
+    const fieldCharCost = fieldName.length + fieldValue.length;
 
-  // Fallback if no events exist in the server
+    // Budget check
+    if (currentTotalChars + fieldCharCost > MAX_TOTAL_EMBED_CHARS || fields.length >= 15) {
+      const remainingCount = events.length - fields.length;
+      fields.push({
+        name: '➕ More Events',
+        value: `...and ${remainingCount} more event(s) scheduled in Discord!`
+      });
+      break;
+    }
+
+    fields.push({ name: fieldName, value: fieldValue });
+    currentTotalChars += fieldCharCost;
+  }
+
+  // Fallback if no events exist
   if (fields.length === 0) {
     fields.push({
       name: '📌 No Upcoming Events',
@@ -101,13 +128,11 @@ async function updateWebhook(events) {
 
   const embedPayload = {
     embeds: [{
-      title: '📅 FAHA Server Scheduled Events',
-      description: 'Upcoming scheduled events for our community. Times automatically adjust to your local timezone!',
-      color: 5793266, // 0x5865F2 Blurple as standard integer
+      title: titleText,
+      description: descText,
+      color: 5793266, // Blurple integer
       fields: fields,
-      footer: {
-        text: 'FAHA Calendar Sync • Auto-updated'
-      },
+      footer: { text: footerText },
       timestamp: new Date().toISOString()
     }]
   };
@@ -117,7 +142,6 @@ async function updateWebhook(events) {
   let method = 'POST';
 
   if (MESSAGE_ID && MESSAGE_ID.trim() !== '') {
-    // Strip trailing slash if present before appending /messages/ID
     targetUrl = `${webhookBase.replace(/\/$/, '')}/messages/${MESSAGE_ID.trim()}`;
     method = 'PATCH';
     console.log(`Editing existing message ID: ${MESSAGE_ID.trim()}...`);
@@ -132,12 +156,14 @@ async function updateWebhook(events) {
   });
 
   if (response.status >= 200 && response.status < 300) {
-    console.log(`🎉 Webhook successfully updated channel message (Status: ${response.status})!`);
+    console.log(`🎉 Success! Webhook updated channel message (Status: ${response.status}).`);
   } else {
     const errBody = await response.text();
     console.error(`❌ Webhook update failed with status ${response.status}:`, errBody);
     process.exit(1);
   }
 }
+
+syncEvents();
 
 syncEvents();
