@@ -1,64 +1,78 @@
 const fs = require('fs');
 const https = require('https');
 
+// Read Environment Variables from GitHub Actions
 const BOT_TOKEN = process.env.DISCORD_BOT_TOKEN;
-const GUILD_ID = process.env.GUILD_ID;
+const GUILD_ID = process.env.DISCORD_GUILD_ID;
 const WEBHOOK_URL = process.env.DISCORD_WEBHOOK_URL;
-const CALENDAR_URL = process.env.CALENDAR_URL || 'https://github.com';
+const MESSAGE_ID = process.env.DISCORD_MESSAGE_ID;
 
 async function syncEvents() {
-  if (!BOT_TOKEN || !GUILD_ID) {
-    console.error('Missing DISCORD_BOT_TOKEN or DISCORD_GUILD_ID');
+  console.log('--- Starting FAHA Calendar Sync ---');
+  
+  // Debug check environment variables
+  if (!BOT_TOKEN) console.error('❌ ERROR: DISCORD_BOT_TOKEN is missing or empty in GitHub Secrets!');
+  if (!GUILD_ID) console.error('❌ ERROR: DISCORD_GUILD_ID is missing or empty in GitHub Secrets!');
+  if (!WEBHOOK_URL) console.error('❌ ERROR: DISCORD_WEBHOOK_URL is missing or empty in GitHub Secrets!');
+
+  if (!BOT_TOKEN || !GUILD_ID || !WEBHOOK_URL) {
+    console.error('Please verify your Repository Secrets names and values in GitHub Settings.');
     process.exit(1);
   }
+
+  console.log(`✅ Secrets loaded successfully. Fetching scheduled events for Guild: ${GUILD_ID}...`);
 
   // 1. Fetch Scheduled Events from Discord API
   const options = {
     hostname: 'discord.com',
     path: `/api/v10/guilds/${GUILD_ID}/scheduled-events`,
+    method: 'GET',
     headers: {
       Authorization: `Bot ${BOT_TOKEN}`,
-      'User-Agent': 'FAHA-Calendar-Sync (1.0)'
+      'User-Agent': 'FAHA-Calendar-Webhook-Sync (1.0)'
     }
   };
 
-  https.get(options, (res) => {
+  const req = https.request(options, (res) => {
     let data = '';
     res.on('data', chunk => data += chunk);
     res.on('end', async () => {
       if (res.statusCode !== 200) {
-        console.error(`API Error: ${res.statusCode}`, data);
+        console.error(`❌ Discord API returned status ${res.statusCode}:`, data);
         process.exit(1);
       }
 
       const events = JSON.parse(data);
-      
-      // Save local backup copy
-      fs.writeFileSync('events.json', JSON.stringify(events, null, 2));
-      console.log(`Successfully synced ${events.length} events to events.json`);
+      console.log(`✅ Successfully fetched ${events.length} event(s) from Discord.`);
 
-      // 2. Format Embed Card for Discord
-      if (WEBHOOK_URL) {
-        await postToWebhook(events);
-      }
+      // Save local backup file
+      fs.writeFileSync('events.json', JSON.stringify(events, null, 2));
+
+      // 2. Format and post to Webhook
+      await updateDiscordCard(events);
     });
-  }).on('error', err => {
-    console.error('Fetch error:', err);
+  });
+
+  req.on('error', err => {
+    console.error('❌ Network error while fetching events:', err);
     process.exit(1);
   });
+
+  req.end();
 }
 
-async function postToWebhook(events) {
+async function updateDiscordCard(events) {
   // Sort events chronologically
   events.sort((a, b) => new Date(a.scheduled_start_time) - new Date(b.scheduled_start_time));
 
+  // Build Discord Embed Fields
   const fields = events.slice(0, 10).map(event => {
     const startTime = Math.floor(new Date(event.scheduled_start_time).getTime() / 1000);
     const location = event.entity_metadata?.location || 'Discord Voice/Stage Channel';
     
     return {
       name: `📌 ${event.name}`,
-      value: `⏰ <t:${startTime}:F> (<t:${startTime}:R>)\n📍 **Location:** ${location}\n${event.description ? `📝 ${event.description}` : ''}`
+      value: `⏰ <t:${startTime}:F> (<t:${startTime}:R>)\n📍 **Location:** ${location}${event.description ? `\n📝 ${event.description}` : ''}`
     };
   });
 
@@ -72,8 +86,8 @@ async function postToWebhook(events) {
   const embedPayload = {
     embeds: [{
       title: '📅 FAHA Server Scheduled Events',
-      description: 'Here are the upcoming scheduled events for our community. Time displays auto-adjust to your local timezone!',
-      color: 0x5865F2, // Discord Blurple color
+      description: 'Upcoming scheduled events for our community. Times automatically adjust to your local timezone!',
+      color: 0x5865F2, // Discord Blurple
       fields: fields,
       footer: {
         text: 'FAHA Calendar Sync • Auto-updated'
@@ -82,21 +96,44 @@ async function postToWebhook(events) {
     }]
   };
 
-  // Post to Webhook
-  const url = new URL(WEBHOOK_URL);
-  const req = https.request({
-    hostname: url.hostname,
-    path: url.pathname + url.search,
-    method: 'POST',
+  // Determine URL path: PATCH to edit an existing message, POST to publish a new one
+  const webhookUrl = new URL(WEBHOOK_URL);
+  let requestPath = webhookUrl.pathname + webhookUrl.search;
+  let method = 'POST';
+
+  if (MESSAGE_ID && MESSAGE_ID.trim() !== '') {
+    requestPath = `${webhookUrl.pathname}/messages/${MESSAGE_ID.trim()}${webhookUrl.search}`;
+    method = 'PATCH';
+    console.log(`Updating existing message ID: ${MESSAGE_ID.trim()} via PATCH...`);
+  } else {
+    console.log('No DISCORD_MESSAGE_ID provided. Posting a new message via POST...');
+  }
+
+  const webhookReq = https.request({
+    hostname: webhookUrl.hostname,
+    path: requestPath,
+    method: method,
     headers: {
       'Content-Type': 'application/json'
     }
   }, res => {
-    console.log(`Webhook posted with status: ${res.statusCode}`);
+    if (res.statusCode >= 200 && res.statusCode < 300) {
+      console.log(`🎉 Webhook successfully updated channel message (Status: ${res.statusCode})!`);
+    } else {
+      let responseBody = '';
+      res.on('data', chunk => responseBody += chunk);
+      res.on('end', () => {
+        console.error(`❌ Webhook update failed with status ${res.statusCode}:`, responseBody);
+      });
+    }
   });
 
-  req.write(JSON.stringify(embedPayload));
-  req.end();
+  webhookReq.on('error', err => {
+    console.error('❌ Webhook request error:', err);
+  });
+
+  webhookReq.write(JSON.stringify(embedPayload));
+  webhookReq.end();
 }
 
 syncEvents();
