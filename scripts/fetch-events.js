@@ -2,7 +2,7 @@ const fs = require('fs');
 const https = require('https');
 
 const BOT_TOKEN = process.env.DISCORD_BOT_TOKEN;
-const GUILD_ID = process.env.DISCORD_GUILD_ID;
+const GUILD_ID = process.env.GUILD_ID;
 const WEBHOOK_URL = process.env.DISCORD_WEBHOOK_URL;
 const CALENDAR_URL = process.env.CALENDAR_URL || 'https://github.com';
 
