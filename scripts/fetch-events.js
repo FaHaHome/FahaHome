@@ -5,7 +5,6 @@ const GUILD_ID = process.env.DISCORD_GUILD_ID;
 const WEBHOOK_URL = process.env.DISCORD_WEBHOOK_URL;
 const MESSAGE_ID = process.env.DISCORD_MESSAGE_ID;
 
-// Helper function for delays
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
 async function fetchEventsWithRetry() {
@@ -61,30 +60,41 @@ async function syncEvents() {
 async function updateWebhook(events) {
   events.sort((a, b) => new Date(a.scheduled_start_time) - new Date(b.scheduled_start_time));
 
+  // Build sanitized fields for up to 10 upcoming events
   const fields = events.slice(0, 10).map((event) => {
     const startTime = Math.floor(new Date(event.scheduled_start_time).getTime() / 1000);
 
+    // Sanitize Location
     let location = 'Discord Server';
-    if (event.entity_metadata?.location) {
-      location = event.entity_metadata.location;
+    if (event.entity_metadata && event.entity_metadata.location && event.entity_metadata.location.trim() !== '') {
+      location = event.entity_metadata.location.trim();
     } else if (event.channel_id) {
       location = `<#${event.channel_id}>`;
     }
 
-    let valueText = `⏰ <t:${startTime}:F> (<t:${startTime}:R>)\n📍 **Location:** ${location}`;
+    // Build guaranteed non-empty field value
+    let valueLines = [
+      `⏰ <t:${startTime}:F> (<t:${startTime}:R>)`,
+      `📍 **Location:** ${location}`
+    ];
+
     if (event.description && event.description.trim() !== '') {
-      valueText += `\n📝 ${event.description.trim()}`;
+      valueLines.push(`📝 ${event.description.trim()}`);
     }
 
+    // Ensure title/name is non-empty and bounded
+    const eventName = (event.name && event.name.trim() !== '') ? event.name.trim() : 'Scheduled Event';
+
     return {
-      name: `📌 ${event.name || 'Scheduled Event'}`,
-      value: valueText
+      name: `📌 ${eventName}`.substring(0, 256),
+      value: valueLines.join('\n').substring(0, 1024)
     };
   });
 
+  // Fallback if no events exist in the server
   if (fields.length === 0) {
     fields.push({
-      name: 'No Upcoming Events',
+      name: '📌 No Upcoming Events',
       value: 'Check back soon for upcoming FAHA meetings and activities!'
     });
   }
@@ -93,7 +103,7 @@ async function updateWebhook(events) {
     embeds: [{
       title: '📅 FAHA Server Scheduled Events',
       description: 'Upcoming scheduled events for our community. Times automatically adjust to your local timezone!',
-      color: 0x5865F2,
+      color: 5793266, // 0x5865F2 Blurple as standard integer
       fields: fields,
       footer: {
         text: 'FAHA Calendar Sync • Auto-updated'
@@ -107,6 +117,7 @@ async function updateWebhook(events) {
   let method = 'POST';
 
   if (MESSAGE_ID && MESSAGE_ID.trim() !== '') {
+    // Strip trailing slash if present before appending /messages/ID
     targetUrl = `${webhookBase.replace(/\/$/, '')}/messages/${MESSAGE_ID.trim()}`;
     method = 'PATCH';
     console.log(`Editing existing message ID: ${MESSAGE_ID.trim()}...`);
