@@ -593,7 +593,7 @@
     // Initialize Lucide Icons
     lucide.createIcons();
 
-    const GOOGLE_SCRIPT_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbzdf48ZUCOOdFwE9N54QIUAJRbfzviZQYFHosPFVICgn21AL5k7i5K609FJGBV5PSs2/exec"
+    const GOOGLE_SCRIPT_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbwb4Nrn7y3BJ2nPP0BwDA-lpe10Zmzq6nKk0uVvxlURhWR2Q2hEtKmtJwfeaZQfftrC-Q/exec"
 
     function toggleMobileMenu() {
       const menu = document.getElementById('mobile-menu');
@@ -625,7 +625,7 @@
       const honeypot = form.querySelector('input[name="website_url_hp"]')?.value;
       if (honeypot) {
         console.warn("Spam submission blocked via honeypot.");
-        alert("Thank you! Your message has been sent to our FAHA community coordinators.");
+        alert("Message received! Please check your email inbox to click the 1-click confirmation link and complete your submission.");
         form.reset();
         closeDiscordModal();
         return;
@@ -683,7 +683,7 @@
       const honeypot = form.querySelector('input[name="website_url_hp"]')?.value;
       if (honeypot) {
         console.warn("Spam submission blocked via honeypot.");
-        alert("Your funding request has been submitted to the FAHA Board!");
+        alert("Request received! Please check your email inbox to click the 1-click confirmation link and complete your submission.");
         form.reset();
         closeFundingModal();
         return;
