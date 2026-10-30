@@ -243,7 +243,6 @@
         <div class="snap-start shrink-0 w-[260px] sm:w-[280px] bg-white rounded-2xl p-5 border border-slate-200 shadow-sm flex flex-col justify-between">
           <div>
             <div class="w-20 h-20 mx-auto rounded-full bg-brand-100 text-brand-600 flex items-center justify-center mb-4 font-bold text-xl overflow-hidden border-2 border-brand-500/20">
-              <!-- Replace src with photo file name e.g. "board-president.jpg" -->
               <img src="Russ.jpg" alt="President" class="w-full h-full object-cover" onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden')">
               <span class="hidden">PR</span>
             </div>
@@ -374,7 +373,6 @@
         </div>
 
         <div class="w-full lg:w-auto flex flex-col sm:flex-row lg:flex-col gap-3 shrink-0">
-          </button>
           <a href="https://www.zeffy.com/en-US/donation-form/scholarship-funds-4" target="_blank" rel="noopener noreferrer" class="w-full px-6 py-3.5 bg-brand-500/20 text-white font-semibold rounded-xl border border-white/20 hover:bg-brand-500/30 transition text-center text-sm min-h-[48px] flex items-center justify-center">
             Donate to Scholarship Fund
           </a>
@@ -456,6 +454,11 @@
 
       <form id="funding-form" onsubmit="handleFundingSubmit(event)" class="space-y-3.5">
         
+        <!-- Invisible Honeypot Anti-Spam Field -->
+        <div class="hidden" aria-hidden="true" style="display:none !important;">
+          <input type="text" name="website_url_hp" tabindex="-1" autocomplete="off">
+        </div>
+
         <div>
           <label class="block text-xs font-semibold text-slate-700 mb-1">Club / Group Name *</label>
           <input type="text" name="club_name" required placeholder="e.g. FAHA Robotics Club" class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-brand-500 outline-none">
@@ -561,6 +564,11 @@
       </p>
 
       <form onsubmit="handleDiscordInquiry(event)" class="space-y-3">
+        <!-- Invisible Honeypot Anti-Spam Field -->
+        <div class="hidden" aria-hidden="true" style="display:none !important;">
+          <input type="text" name="website_url_hp" tabindex="-1" autocomplete="off">
+        </div>
+
         <div>
           <label class="block text-xs font-medium text-slate-700 mb-1">Parent Name</label>
           <input type="text" required class="w-full px-3 py-2.5 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-brand-500 outline-none">
@@ -612,6 +620,17 @@
     async function handleDiscordInquiry(e) {
       e.preventDefault();
       const form = e.target;
+
+      // Honeypot check: If filled, it's a bot!
+      const honeypot = form.querySelector('input[name="website_url_hp"]')?.value;
+      if (honeypot) {
+        console.warn("Spam submission blocked via honeypot.");
+        alert("Thank you! Your message has been sent to our FAHA community coordinators.");
+        form.reset();
+        closeDiscordModal();
+        return;
+      }
+
       const submitBtn = form.querySelector('button[type="submit"]');
     
       if (!GOOGLE_SCRIPT_WEB_APP_URL || GOOGLE_SCRIPT_WEB_APP_URL.includes("YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL")) {
@@ -648,48 +667,60 @@
       }
     }
         
-    
-        function openFundingModal() {
-          document.getElementById('funding-modal').classList.remove('hidden');
-        }
-    
-        function closeFundingModal() {
-          document.getElementById('funding-modal').classList.add('hidden');
-        }
-        async function handleFundingSubmit(e) {
-        e.preventDefault();
-        const form = e.target;
-        const submitBtn = document.getElementById('funding-submit-btn');
-    
-        if (!GOOGLE_SCRIPT_WEB_APP_URL || GOOGLE_SCRIPT_WEB_APP_URL === "YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL") {
-          alert("Funding request received! (Note: Please finish adding your Google Apps Script URL to process live submissions).");
-          closeFundingModal();
-          return;
-        }
-    
-        submitBtn.disabled = true;
-        submitBtn.innerText = "Submitting Request...";
-    
-        const formData = new FormData(form);
-    
-        try {
-          await fetch(GOOGLE_SCRIPT_WEB_APP_URL, {
-            method: 'POST',
-            body: formData
-          });
-          alert("Your funding request has been submitted to the FAHA Board!");
-          form.reset();
-          closeFundingModal();
-        } catch (err) {
-          alert("Thank you! Your request was submitted.");
-          form.reset();
-          closeFundingModal();
-        } finally {
-          submitBtn.disabled = false;
-          submitBtn.innerText = "Submit Funding Request";
-        }
+    function openFundingModal() {
+      document.getElementById('funding-modal').classList.remove('hidden');
+    }
+
+    function closeFundingModal() {
+      document.getElementById('funding-modal').classList.add('hidden');
+    }
+
+    async function handleFundingSubmit(e) {
+      e.preventDefault();
+      const form = e.target;
+
+      // Honeypot check: If filled, it's a bot!
+      const honeypot = form.querySelector('input[name="website_url_hp"]')?.value;
+      if (honeypot) {
+        console.warn("Spam submission blocked via honeypot.");
+        alert("Your funding request has been submitted to the FAHA Board!");
+        form.reset();
+        closeFundingModal();
+        return;
       }
-function scrollToTop() {
+
+      const submitBtn = document.getElementById('funding-submit-btn');
+
+      if (!GOOGLE_SCRIPT_WEB_APP_URL || GOOGLE_SCRIPT_WEB_APP_URL === "YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL") {
+        alert("Funding request received! (Note: Please finish adding your Google Apps Script URL to process live submissions).");
+        closeFundingModal();
+        return;
+      }
+
+      submitBtn.disabled = true;
+      submitBtn.innerText = "Submitting Request...";
+
+      const formData = new FormData(form);
+
+      try {
+        await fetch(GOOGLE_SCRIPT_WEB_APP_URL, {
+          method: 'POST',
+          body: formData
+        });
+        alert("Your funding request has been submitted to the FAHA Board!");
+        form.reset();
+        closeFundingModal();
+      } catch (err) {
+        alert("Thank you! Your request was submitted.");
+        form.reset();
+        closeFundingModal();
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.innerText = "Submit Funding Request";
+      }
+    }
+
+    function scrollToTop() {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
