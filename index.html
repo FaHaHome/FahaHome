@@ -51,18 +51,27 @@
       -ms-overflow-style: none;
       scrollbar-width: none;
     }
+    /* Human-invisible honeypot container (bots still see it as renderable) */
+    .faha-hp-wrap {
+      position: absolute;
+      left: -9999px;
+      top: auto;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      opacity: 0;
+      pointer-events: none;
+    }
   </style>
 
- <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-1BJGNMXP7F"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-1BJGNMXP7F');
-</script>
-  
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-1BJGNMXP7F"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-1BJGNMXP7F');
+  </script>
 </head>
 <body class="bg-slate-50 text-slate-800 font-sans antialiased flex flex-col min-h-screen">
 
@@ -85,7 +94,7 @@
         </div>
       </a>
 
-   <!-- Desktop Nav inside index.html -->
+      <!-- Desktop Nav -->
       <nav class="hidden md:flex items-center gap-8 font-medium text-slate-600 text-sm">
         <a href="#about" class="hover:text-brand-600 transition py-2">About Us</a>
         <a href="#structure" class="hover:text-brand-600 transition py-2">How We Work</a>
@@ -146,14 +155,13 @@
         FAHA provides the non-profit framework, club funding, and trip scholarships so families can organize inclusive activities together.
       </p>
 
-     <!-- CTA Group -->
+      <!-- CTA Group -->
       <div class="mt-7 md:mt-9 flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3.5">
         <a href="https://www.zeffy.com/en-US/ticketing/fredericksburg-area-homeschool-associations-memberships" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto px-8 py-3.5 bg-brand-600 text-white font-bold rounded-xl shadow-md hover:bg-brand-700 transition min-h-[50px] flex items-center justify-center gap-2 text-base">
           <span>Join Membership</span>
           <i data-lucide="arrow-right" class="w-5 h-5"></i>
         </a>
         
-        <!-- Member Portal / Membership Card Link -->
         <a href="https://www.zeffy.com/en-US/d/payments" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto px-8 py-3.5 bg-slate-900 text-white font-semibold rounded-xl hover:bg-slate-800 transition min-h-[50px] flex items-center justify-center gap-2 text-base">
           <i data-lucide="credit-card" class="w-5 h-5"></i>
           <span>Membership Card &amp; History</span>
@@ -251,7 +259,7 @@
               <h3 class="text-base font-bold text-slate-900">Board President</h3>
               <p class="text-xs text-slate-500 mt-2 leading-relaxed">
                 Russell Wrightson serves the group as President. The driving force behind the development of FaHa as a non-profit, 
-                Russell was entrusted with the organization and is committed to maintaining  the vital spirt of secularism, inclusion, and community that first made FaHa a home for so many. 
+                Russell was entrusted with the organization and is committed to maintaining the vital spirit of secularism, inclusion, and community that first made FaHa a home for so many. 
                 He is a homeschooling father of two. 
               </p>
             </div>
@@ -271,7 +279,7 @@
               <p class="text-xs text-slate-500 mt-2 leading-relaxed">
                 Chrisi Leake is a lifetime autodidact, passionate about education and learning. 
                 Despite having joined the group in the last few years, she approaches FaHa with the same passion and intention as when it was formed. 
-                Her eclectic, interests and non-traditional schooling methods are invaluable to the effort to keep the group aligned with its mission and roots. 
+                Her eclectic interests and non-traditional schooling methods are invaluable to the effort to keep the group aligned with its mission and roots. 
               </p>
             </div>
           </div>
@@ -290,7 +298,7 @@
               <p class="text-xs text-slate-500 mt-2 leading-relaxed">
                 Tristan Hinz is balancing work as a contractor, homeschooler and board member. 
                 Tristan leads the chess and board game day through FaHa, which plays to his strengths as an educator. 
-                He builds trust with his kids and other through mutual respect and an infectious sense of curiosity.
+                He builds trust with his kids and others through mutual respect and an infectious sense of curiosity.
               </p>
             </div>
           </div>
@@ -327,7 +335,7 @@
               <h3 class="text-base font-bold text-slate-900">Board Member</h3>
               <p class="text-xs text-slate-500 mt-2 leading-relaxed">
                 Stephanie Hummer has an unwavering willingness to act in support of the organization. 
-                Stephanie makes seeing through, even the most complex tasks, a joy.  She is a homeschooling mother of one. 
+                Stephanie makes seeing through even the most complex tasks a joy. She is a homeschooling mother of one. 
               </p>
             </div>
           </div>
@@ -382,7 +390,7 @@
     </div>
   </section>
   
-<!-- CLUB FUNDING REQUEST SECTION -->
+  <!-- CLUB FUNDING REQUEST SECTION -->
   <section id="funding" class="py-12 md:py-16 bg-slate-50 border-t border-slate-200/80">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="bg-slate-900 text-white rounded-2xl sm:rounded-3xl p-6 sm:p-10 md:p-12 border border-slate-800 flex flex-col md:flex-row items-stretch md:items-center justify-between gap-8">
@@ -429,7 +437,7 @@
           <a href="https://www.zeffy.com/en-US/ticketing/fredericksburg-area-homeschool-associations-memberships" target="_blank" rel="noopener noreferrer" class="px-6 py-3.5 bg-brand-600 text-white font-bold rounded-xl hover:bg-brand-700 transition text-center text-sm shadow min-h-[48px] flex items-center justify-center">
             Join &amp; Get Discord Invite
           </a>
-          <button onclick="openDiscordInquiryModal()" class="px-6 py-3.5 bg-slate-800 text-slate-300 border border-slate-700 font-semibold rounded-xl hover:bg-slate-700 transition text-center text-sm min-h-[48px]">
+          <button onclick="openDiscordModal()" class="px-6 py-3.5 bg-slate-800 text-slate-300 border border-slate-700 font-semibold rounded-xl hover:bg-slate-700 transition text-center text-sm min-h-[48px]">
             Contact a Coordinator
           </button>
         </div>
@@ -438,66 +446,7 @@
     </div>
   </section>
 
-  <!-- CLUB FUNDING REQUEST MODAL -->
-  <div id="funding-modal" class="fixed inset-0 z-50 hidden bg-slate-900/70 backdrop-blur-sm flex items-center justify-center p-4">
-    <div class="bg-white w-full max-w-lg rounded-2xl overflow-hidden shadow-2xl border border-slate-200 p-6 max-h-[90vh] overflow-y-auto">
-      
-      <div class="flex items-center justify-between border-b border-slate-100 pb-3 mb-4">
-        <div>
-          <h3 class="font-bold text-slate-800 text-base">Member Club Funding Request</h3>
-          <p class="text-xs text-slate-500">Submit budget requests for club supplies, venues, or materials.</p>
-        </div>
-        <button onclick="closeFundingModal()" aria-label="Close modal" class="text-slate-400 hover:text-slate-600 p-1">
-          <i data-lucide="x" class="w-5 h-5"></i>
-        </button>
-      </div>
-
-      <form id="funding-form" onsubmit="handleFundingSubmit(event)" class="space-y-3.5">
-        
-        <!-- Invisible Honeypot Anti-Spam Field -->
-        <div class="hidden" aria-hidden="true" style="display:none !important;">
-          <input type="text" name="website_url_hp" tabindex="-1" autocomplete="off">
-        </div>
-
-        <div>
-          <label class="block text-xs font-semibold text-slate-700 mb-1">Club / Group Name *</label>
-          <input type="text" name="club_name" required placeholder="e.g. FAHA Robotics Club" class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-brand-500 outline-none">
-        </div>
-
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-          <div>
-            <label class="block text-xs font-semibold text-slate-700 mb-1">Contact Person Name *</label>
-            <input type="text" name="contact_name" required class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-brand-500 outline-none">
-          </div>
-          <div>
-            <label class="block text-xs font-semibold text-slate-700 mb-1">Contact Email *</label>
-            <input type="email" name="contact_email" required class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-brand-500 outline-none">
-          </div>
-        </div>
-
-        <div>
-          <label class="block text-xs font-semibold text-slate-700 mb-1">Amount Requested ($) *</label>
-          <input type="number" name="amount_requested" required min="1" step="any" placeholder="150.00" class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-brand-500 outline-none">
-        </div>
-
-        <div>
-          <label class="block text-xs font-semibold text-slate-700 mb-1">Purpose & Description *</label>
-          <textarea name="purpose" rows="3" required placeholder="Describe what these funds will be used for..." class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-brand-500 outline-none"></textarea>
-        </div>
-
-        <div>
-          <label class="block text-xs font-semibold text-slate-700 mb-1">Itemized Cost Breakdown</label>
-          <textarea name="itemized_costs" rows="2" placeholder="e.g. 5x Kits ($20 ea), Venue Rental ($50)" class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-brand-500 outline-none"></textarea>
-        </div>
-
-        <button id="funding-submit-btn" type="submit" class="w-full py-3 bg-brand-600 text-white font-bold rounded-xl hover:bg-brand-700 transition text-sm min-h-[48px] shadow">
-          Submit Funding Request
-        </button>
-      </form>
-    </div>
-  </div>
-
-  <!-- FOOTER (Google Ad Grants 501(c)(3) Compliant) -->
+  <!-- FOOTER -->
   <footer class="mt-auto bg-slate-900 text-slate-400 py-10 md:py-12 border-t border-slate-800">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="grid grid-cols-1 md:grid-cols-4 gap-8 pb-8 border-b border-slate-800 text-sm">
@@ -523,7 +472,7 @@
           </ul>
         </div>
 
-      <div>
+        <div>
           <h4 class="text-white font-semibold mb-3 text-xs uppercase tracking-wider">Contact &amp; Governance</h4>
           <p class="text-xs text-slate-400 leading-relaxed">
             <strong class="text-slate-300">Fredericksburg Area Homeschool Association</strong><br>
@@ -544,6 +493,72 @@
     </div>
   </footer>
 
+  <!-- ===================================================================== -->
+  <!-- MODALS                                                                -->
+  <!-- ===================================================================== -->
+
+  <!-- CLUB FUNDING REQUEST MODAL -->
+  <div id="funding-modal" class="fixed inset-0 z-50 hidden bg-slate-900/70 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-white w-full max-w-lg rounded-2xl overflow-hidden shadow-2xl border border-slate-200 p-6 max-h-[90vh] overflow-y-auto">
+      
+      <div class="flex items-center justify-between border-b border-slate-100 pb-3 mb-4">
+        <div>
+          <h3 class="font-bold text-slate-800 text-base">Member Club Funding Request</h3>
+          <p class="text-xs text-slate-500">Submit budget requests for club supplies, venues, or materials.</p>
+        </div>
+        <button onclick="closeFundingModal()" aria-label="Close modal" class="text-slate-400 hover:text-slate-600 p-1">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <form id="funding-form" onsubmit="handleFundingSubmit(event)" class="space-y-3.5">
+        
+        <!-- HONEYPOT DECOY FIELDS (Positioned off-screen, invisible to humans, visible to bots) -->
+        <div class="faha-hp-wrap" aria-hidden="true">
+          <label for="funding_fax">Fax Number</label>
+          <input type="text" id="funding_fax" name="fax_number" tabindex="-1" autocomplete="new-password">
+          <label for="funding_web">Company Website</label>
+          <input type="url" id="funding_web" name="company_website" tabindex="-1" autocomplete="new-password">
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold text-slate-700 mb-1">Club / Group Name *</label>
+          <input type="text" name="club_name" required placeholder="e.g. FAHA Robotics Club" class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-brand-500 outline-none">
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div>
+            <label class="block text-xs font-semibold text-slate-700 mb-1">Contact Person Name *</label>
+            <input type="text" name="contact_name" required class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-brand-500 outline-none">
+          </div>
+          <div>
+            <label class="block text-xs font-semibold text-slate-700 mb-1">Contact Email *</label>
+            <input type="email" name="contact_email" required class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-brand-500 outline-none">
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold text-slate-700 mb-1">Amount Requested ($) *</label>
+          <input type="number" name="amount_requested" required min="1" step="any" placeholder="150.00" class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-brand-500 outline-none">
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold text-slate-700 mb-1">Purpose &amp; Description *</label>
+          <textarea name="purpose" rows="3" required placeholder="Describe what these funds will be used for..." class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-brand-500 outline-none"></textarea>
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold text-slate-700 mb-1">Itemized Cost Breakdown</label>
+          <textarea name="itemized_costs" rows="2" placeholder="e.g. 5x Kits ($20 ea), Venue Rental ($50)" class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-brand-500 outline-none"></textarea>
+        </div>
+
+        <button id="funding-submit-btn" type="submit" class="w-full py-3 bg-brand-600 text-white font-bold rounded-xl hover:bg-brand-700 transition text-sm min-h-[48px] shadow">
+          Submit Funding Request
+        </button>
+      </form>
+    </div>
+  </div>
+
   <!-- DISCORD INQUIRY MODAL -->
   <div id="discord-modal" class="fixed inset-0 z-50 hidden bg-slate-900/70 backdrop-blur-sm flex items-center justify-center p-4">
     <div class="bg-white w-full max-w-md rounded-2xl overflow-hidden shadow-2xl border border-slate-200 p-6">
@@ -558,116 +573,114 @@
         Have questions about FAHA's secular community or Discord before joining? Send us a quick message.
       </p>
       
-      <!-- Optional Address Note inside Contact Modal -->
       <p class="text-[11px] text-slate-500 mb-4 bg-slate-50 p-2.5 rounded-lg border border-slate-200">
         📍 <strong>Mailing Address:</strong> 10408 Courthouse Rd, PMB #42, Spotsylvania, VA 22553
       </p>
 
-      <form onsubmit="handleDiscordInquiry(event)" class="space-y-3">
-        <!-- Invisible Honeypot Anti-Spam Field -->
-        <div class="hidden" aria-hidden="true" style="display:none !important;">
-          <input type="text" name="website_url_hp" tabindex="-1" autocomplete="off">
+      <form id="discord-form" onsubmit="handleDiscordSubmit(event)" class="space-y-3">
+        
+        <!-- HONEYPOT DECOY FIELDS (Positioned off-screen, invisible to humans, visible to bots) -->
+        <div class="faha-hp-wrap" aria-hidden="true">
+          <label for="discord_fax">Fax Number</label>
+          <input type="text" id="discord_fax" name="fax_number" tabindex="-1" autocomplete="new-password">
+          <label for="discord_web">Company Website</label>
+          <input type="url" id="discord_web" name="company_website" tabindex="-1" autocomplete="new-password">
         </div>
 
         <div>
-          <label class="block text-xs font-medium text-slate-700 mb-1">Parent Name</label>
-          <input type="text" required class="w-full px-3 py-2.5 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-brand-500 outline-none">
+          <label class="block text-xs font-medium text-slate-700 mb-1">Parent Name *</label>
+          <input type="text" name="contact_name" required class="w-full px-3 py-2.5 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-brand-500 outline-none">
         </div>
         <div>
-          <label class="block text-xs font-medium text-slate-700 mb-1">Email Address</label>
-          <input type="email" required class="w-full px-3 py-2.5 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-brand-500 outline-none">
+          <label class="block text-xs font-medium text-slate-700 mb-1">Email Address *</label>
+          <input type="email" name="contact_email" required class="w-full px-3 py-2.5 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-brand-500 outline-none">
         </div>
         <div>
-          <label class="block text-xs font-medium text-slate-700 mb-1">Questions</label>
-          <textarea rows="3" required class="w-full px-3 py-2.5 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-brand-500 outline-none"></textarea>
+          <label class="block text-xs font-medium text-slate-700 mb-1">Questions *</label>
+          <textarea name="purpose" rows="3" required class="w-full px-3 py-2.5 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-brand-500 outline-none"></textarea>
         </div>
-        <button type="submit" class="w-full py-3 bg-brand-600 text-white font-bold rounded-lg hover:bg-brand-700 transition text-sm min-h-[44px]">
+        <button id="discord-submit-btn" type="submit" class="w-full py-3 bg-brand-600 text-white font-bold rounded-lg hover:bg-brand-700 transition text-sm min-h-[44px]">
           Send Message
         </button>
       </form>
     </div>
   </div>
 
-  <!-- JAVASCRIPT -->
+  <!-- FLOATING SCROLL TO TOP BUTTON -->
+  <button id="scrollToTopBtn" onclick="scrollToTop()" aria-label="Scroll to top" class="fixed bottom-6 right-6 z-40 p-3 hover:px-4 bg-slate-900/70 hover:bg-slate-900/95 text-white rounded-full shadow-lg backdrop-blur-md transition-all duration-300 opacity-0 pointer-events-none border border-white/20 flex items-center gap-1.5 group">
+    <i data-lucide="chevron-up" class="w-5 h-5 shrink-0"></i>
+    <span class="max-w-0 overflow-hidden whitespace-nowrap group-hover:max-w-xs transition-all duration-300 text-xs font-semibold">Back to Top</span>
+  </button>
+
+  <!-- ===================================================================== -->
+  <!-- JAVASCRIPT: ORGANIZED FOR EASY EDITING                                -->
+  <!-- ===================================================================== -->
   <script>
+    // -----------------------------------------------------------------------
+    // 1. CONFIGURATION
+    // -----------------------------------------------------------------------
+    const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwb4Nrn7y3BJ2nPP0BwDA-lpe10Zmzq6nKk0uVvxlURhWR2Q2hEtKmtJwfeaZQfftrC-Q/exec";
+    const MIN_HUMAN_FILL_MS = 2500; // Minimum milliseconds a human takes to fill a form
+
     // Initialize Lucide Icons
     lucide.createIcons();
 
-    const GOOGLE_SCRIPT_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbwb4Nrn7y3BJ2nPP0BwDA-lpe10Zmzq6nKk0uVvxlURhWR2Q2hEtKmtJwfeaZQfftrC-Q/exec"
+    // -----------------------------------------------------------------------
+    // 2. ANTI-SPAM PROTECTION (HONEYPOT + SPEED CHECK)
+    // -----------------------------------------------------------------------
+    let modalOpenedAt = 0;
 
+    function isSpamSubmission(form) {
+      // Check A: Did a bot fill out either hidden decoy field?
+      const faxTrap = form.querySelector('input[name="fax_number"]')?.value.trim();
+      const webTrap = form.querySelector('input[name="company_website"]')?.value.trim();
+      if (faxTrap || webTrap) {
+        console.warn("[FAHA Anti-Spam] Blocked: Decoy field populated.");
+        return true;
+      }
+
+      // Check B: Was the form submitted inhumanly fast?
+      const elapsedMs = Date.now() - modalOpenedAt;
+      if (modalOpenedAt === 0 || elapsedMs < MIN_HUMAN_FILL_MS) {
+        console.warn(`[FAHA Anti-Spam] Blocked: Submitted too fast (${elapsedMs}ms).`);
+        return true;
+      }
+
+      return false;
+    }
+
+    // -----------------------------------------------------------------------
+    // 3. UI & NAVIGATION CONTROLS
+    // -----------------------------------------------------------------------
     function toggleMobileMenu() {
-      const menu = document.getElementById('mobile-menu');
-      menu.classList.toggle('hidden');
+      document.getElementById('mobile-menu').classList.toggle('hidden');
     }
 
     function scrollBoardCarousel(amount) {
-      const container = document.getElementById('board-carousel');
-      container.scrollBy({ left: amount, behavior: 'smooth' });
+      document.getElementById('board-carousel').scrollBy({ left: amount, behavior: 'smooth' });
     }
 
-    function openDiscordInquiryModal() {
-      document.getElementById('discord-modal').classList.remove('hidden');
+    function scrollToTop() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    function closeDiscordModal() {
-      document.getElementById('discord-modal').classList.add('hidden');
-    }
-
-    function openScholarshipModal() {
-      alert("Scholarship assistance requests are handled confidentially. Please email fahahelp@fahahome.com or connect through our Zeffy portal.");
-    }
-
-    async function handleDiscordInquiry(e) {
-      e.preventDefault();
-      const form = e.target;
-
-      // Honeypot check: If filled, it's a bot!
-      const honeypot = form.querySelector('input[name="website_url_hp"]')?.value;
-      if (honeypot) {
-        console.warn("Spam submission blocked via honeypot.");
-        alert("Message received! Please check your email inbox to click the 1-click confirmation link and complete your submission.");
-        form.reset();
-        closeDiscordModal();
-        return;
+    window.addEventListener('scroll', () => {
+      const btn = document.getElementById('scrollToTopBtn');
+      if (!btn) return;
+      if (window.scrollY > 300) {
+        btn.classList.remove('opacity-0', 'pointer-events-none');
+        btn.classList.add('opacity-100', 'pointer-events-auto');
+      } else {
+        btn.classList.add('opacity-0', 'pointer-events-none');
+        btn.classList.remove('opacity-100', 'pointer-events-auto');
       }
+    });
 
-      const submitBtn = form.querySelector('button[type="submit"]');
-    
-      if (!GOOGLE_SCRIPT_WEB_APP_URL || GOOGLE_SCRIPT_WEB_APP_URL.includes("YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL")) {
-        alert("Thank you! A FAHA community coordinator will reach out shortly.");
-        closeDiscordModal();
-        return;
-      }
-    
-      submitBtn.disabled = true;
-      submitBtn.innerText = "Sending...";
-    
-      const formData = new FormData();
-      formData.append('club_name', 'General Discord / Coordinator Inquiry');
-      formData.append('contact_name', form.querySelector('input[type="text"]').value);
-      formData.append('contact_email', form.querySelector('input[type="email"]').value);
-      formData.append('amount_requested', 'N/A');
-      formData.append('purpose', form.querySelector('textarea').value);
-    
-      try {
-        await fetch(GOOGLE_SCRIPT_WEB_APP_URL, {
-          method: 'POST',
-          body: formData
-        });
-        alert("Thank you! Your message has been sent to our FAHA community coordinators.");
-        form.reset();
-        closeDiscordModal();
-      } catch (err) {
-        alert("Thank you! Your message was sent.");
-        form.reset();
-        closeDiscordModal();
-      } finally {
-        submitBtn.disabled = false;
-        submitBtn.innerText = "Send Message";
-      }
-    }
-        
+    // -----------------------------------------------------------------------
+    // 4. MODAL OPEN / CLOSE CONTROLS
+    // -----------------------------------------------------------------------
     function openFundingModal() {
+      modalOpenedAt = Date.now();
       document.getElementById('funding-modal').classList.remove('hidden');
     }
 
@@ -675,36 +688,43 @@
       document.getElementById('funding-modal').classList.add('hidden');
     }
 
-    async function handleFundingSubmit(e) {
-      e.preventDefault();
-      const form = e.target;
+    function openDiscordModal() {
+      modalOpenedAt = Date.now();
+      document.getElementById('discord-modal').classList.remove('hidden');
+    }
 
-      // Honeypot check: If filled, it's a bot!
-      const honeypot = form.querySelector('input[name="website_url_hp"]')?.value;
-      if (honeypot) {
-        console.warn("Spam submission blocked via honeypot.");
-        alert("Request received! Please check your email inbox to click the 1-click confirmation link and complete your submission.");
+    function closeDiscordModal() {
+      document.getElementById('discord-modal').classList.add('hidden');
+    }
+
+    // -----------------------------------------------------------------------
+    // 5. FORM SUBMISSION HANDLERS
+    // -----------------------------------------------------------------------
+    async function handleFundingSubmit(event) {
+      event.preventDefault();
+      const form = event.target;
+
+      // Silent block if bot is detected
+      if (isSpamSubmission(form)) {
+        alert("Your funding request has been submitted to the FAHA Board!");
         form.reset();
         closeFundingModal();
         return;
       }
 
       const submitBtn = document.getElementById('funding-submit-btn');
-
-      if (!GOOGLE_SCRIPT_WEB_APP_URL || GOOGLE_SCRIPT_WEB_APP_URL === "YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL") {
-        alert("Funding request received! (Note: Please finish adding your Google Apps Script URL to process live submissions).");
-        closeFundingModal();
-        return;
-      }
-
       submitBtn.disabled = true;
       submitBtn.innerText = "Submitting Request...";
 
+      // Strip decoy fields before sending to Google Sheets
       const formData = new FormData(form);
+      formData.delete('fax_number');
+      formData.delete('company_website');
 
       try {
-        await fetch(GOOGLE_SCRIPT_WEB_APP_URL, {
+        await fetch(GOOGLE_SCRIPT_URL, {
           method: 'POST',
+          mode: 'no-cors',
           body: formData
         });
         alert("Your funding request has been submitted to the FAHA Board!");
@@ -720,28 +740,47 @@
       }
     }
 
-    function scrollToTop() {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
+    async function handleDiscordSubmit(event) {
+      event.preventDefault();
+      const form = event.target;
 
-    // Show/hide floating button on scroll
-    window.addEventListener('scroll', () => {
-      const btn = document.getElementById('scrollToTopBtn');
-      if (btn) {
-        if (window.scrollY > 300) {
-          btn.classList.remove('opacity-0', 'pointer-events-none');
-          btn.classList.add('opacity-100', 'pointer-events-auto');
-        } else {
-          btn.classList.add('opacity-0', 'pointer-events-none');
-          btn.classList.remove('opacity-100', 'pointer-events-auto');
-        }
+      // Silent block if bot is detected
+      if (isSpamSubmission(form)) {
+        alert("Thank you! Your message has been sent to our FAHA community coordinators.");
+        form.reset();
+        closeDiscordModal();
+        return;
       }
-    });
+
+      const submitBtn = document.getElementById('discord-submit-btn');
+      submitBtn.disabled = true;
+      submitBtn.innerText = "Sending...";
+
+      const formData = new FormData();
+      formData.append('club_name', 'General Discord / Coordinator Inquiry');
+      formData.append('contact_name', form.querySelector('input[name="contact_name"]').value);
+      formData.append('contact_email', form.querySelector('input[name="contact_email"]').value);
+      formData.append('amount_requested', 'N/A');
+      formData.append('purpose', form.querySelector('textarea[name="purpose"]').value);
+
+      try {
+        await fetch(GOOGLE_SCRIPT_URL, {
+          method: 'POST',
+          mode: 'no-cors',
+          body: formData
+        });
+        alert("Thank you! Your message has been sent to our FAHA community coordinators.");
+        form.reset();
+        closeDiscordModal();
+      } catch (err) {
+        alert("Thank you! Your message was sent.");
+        form.reset();
+        closeDiscordModal();
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.innerText = "Send Message";
+      }
+    }
   </script>
-  <!-- FLOATING SCROLL TO TOP BUTTON -->
-  <button id="scrollToTopBtn" onclick="scrollToTop()" aria-label="Scroll to top" class="fixed bottom-6 right-6 z-40 p-3 hover:px-4 bg-slate-900/70 hover:bg-slate-900/95 text-white rounded-full shadow-lg backdrop-blur-md transition-all duration-300 opacity-0 pointer-events-none border border-white/20 flex items-center gap-1.5 group">
-    <i data-lucide="chevron-up" class="w-5 h-5 shrink-0"></i>
-    <span class="max-w-0 overflow-hidden whitespace-nowrap group-hover:max-w-xs transition-all duration-300 text-xs font-semibold">Back to Top</span>
-  </button>
 </body>
 </html>

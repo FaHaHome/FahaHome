@@ -56,6 +56,17 @@
       box-shadow: 0 0 0 3px rgba(20, 184, 166, 0.4), 0 10px 15px -3px rgba(0, 0, 0, 0.3) !important;
       transform: translateY(-2px);
     }
+    /* Human-invisible honeypot container (bots still see it as renderable) */
+    .faha-hp-wrap {
+      position: absolute;
+      left: -9999px;
+      top: auto;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      opacity: 0;
+      pointer-events: none;
+    }
   </style>
 
   <!-- Google tag (gtag.js) -->
@@ -228,11 +239,15 @@
       <div class="flex items-center gap-4 text-slate-400">
         <a href="index.html" class="hover:text-white transition py-1">Home</a>
         <a href="index.html#funding" class="hover:text-white transition py-1">Request Funds</a>
-        <a href="mailto:Fahahelp@fahahome.com" class="hover:text-white transition py-1">Fahahelp@fahahome.com</a>
+        <a href="mailto:info@fahahome.com" class="hover:text-white transition py-1">info@fahahome.com</a>
       </div>
       <p class="text-slate-600">&copy; <script>document.write(new Date().getFullYear())</script> FAHA 501(c)(3)</p>
     </div>
   </footer>
+
+  <!-- ===================================================================== -->
+  <!-- MODALS                                                                -->
+  <!-- ===================================================================== -->
 
   <!-- CLUB FUNDING / HOST REQUEST MODAL -->
   <div id="funding-modal" class="fixed inset-0 z-50 hidden bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-4">
@@ -249,6 +264,15 @@
       </div>
 
       <form id="funding-form" onsubmit="handleFundingSubmit(event)" class="space-y-3.5 text-xs">
+        
+        <!-- HONEYPOT DECOY FIELDS (Positioned off-screen, invisible to humans, visible to bots) -->
+        <div class="faha-hp-wrap" aria-hidden="true">
+          <label for="club_fax">Fax Number</label>
+          <input type="text" id="club_fax" name="fax_number" tabindex="-1" autocomplete="new-password">
+          <label for="club_web">Company Website</label>
+          <input type="url" id="club_web" name="company_website" tabindex="-1" autocomplete="new-password">
+        </div>
+
         <div>
           <label class="block font-semibold text-slate-300 mb-1">Club / Group Name *</label>
           <input type="text" id="modal-club-input" name="club_name" required placeholder="e.g. FAHA Robotics Club" class="w-full px-3 py-2.5 bg-slate-800 border border-slate-700 rounded-lg text-white focus:ring-2 focus:ring-brand-500 outline-none text-sm min-h-[44px]">
@@ -287,18 +311,48 @@
     </div>
   </div>
 
-  <!-- JAVASCRIPT DATA & INTERACTION SCRIPT -->
+  <!-- ===================================================================== -->
+  <!-- JAVASCRIPT: ORGANIZED FOR EASY EDITING                                -->
+  <!-- ===================================================================== -->
   <script>
-    const GOOGLE_SCRIPT_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbzdf48ZUCOOdFwE9N54QIUAJRbfzviZQYFHosPFVICgn21AL5k7i5K609FJGBV5PSs2/exec";
-    
-    // Paste your Published Google Sheet CSV Link here:
+    // -----------------------------------------------------------------------
+    // 1. CONFIGURATION
+    // -----------------------------------------------------------------------
+    const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzdf48ZUCOOdFwE9N54QIUAJRbfzviZQYFHosPFVICgn21AL5k7i5K609FJGBV5PSs2/exec";
     const GOOGLE_SHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/1Auhpi4lgt54KrtpnE-LD0yZKA3rv1iETR3vfS0soBwA/export?format=csv";
+    const MIN_HUMAN_FILL_MS = 2500; // Minimum milliseconds a human takes to fill a form
 
     let clubsData = [];
     let currentCategory = 'all';
     let selectedClubId = '';
 
-    // Skeleton Preloader while fetching
+    // -----------------------------------------------------------------------
+    // 2. ANTI-SPAM PROTECTION (HONEYPOT + SPEED CHECK)
+    // -----------------------------------------------------------------------
+    let modalOpenedAt = 0;
+
+    function isSpamSubmission(form) {
+      // Check A: Did a bot fill out either hidden decoy field?
+      const faxTrap = form.querySelector('input[name="fax_number"]')?.value.trim();
+      const webTrap = form.querySelector('input[name="company_website"]')?.value.trim();
+      if (faxTrap || webTrap) {
+        console.warn("[FAHA Anti-Spam] Blocked: Decoy field populated.");
+        return true;
+      }
+
+      // Check B: Was the form submitted inhumanly fast?
+      const elapsedMs = Date.now() - modalOpenedAt;
+      if (modalOpenedAt === 0 || elapsedMs < MIN_HUMAN_FILL_MS) {
+        console.warn(`[FAHA Anti-Spam] Blocked: Submitted too fast (${elapsedMs}ms).`);
+        return true;
+      }
+
+      return false;
+    }
+
+    // -----------------------------------------------------------------------
+    // 3. CLUB DIRECTORY LOADING & PARSING
+    // -----------------------------------------------------------------------
     function showLoadingState() {
       const grid = document.getElementById('club-grid');
       const stage = document.getElementById('spotlight-card');
@@ -325,7 +379,6 @@
       lucide.createIcons();
     }
 
-    // Displays Maintenance notice if Sheet fails
     function showMaintenanceState() {
       const grid = document.getElementById('club-grid');
       const stage = document.getElementById('spotlight-card');
@@ -355,7 +408,6 @@
       lucide.createIcons();
     }
 
-    // CSV Parser
     function parseCSV(text) {
       const rows = [];
       let row = [];
@@ -399,7 +451,6 @@
           item[h] = rowVals[idx] ? rowVals[idx].replace(/^"(.*)"$/, '$1').trim() : '';
         });
 
-        // Parse Active state boolean
         const activeRaw = (item.active || '').toLowerCase();
         item.is_active = !item.active || ['true', 'yes', '1', 'active', ''].includes(activeRaw);
 
@@ -410,7 +461,6 @@
       return parsedData;
     }
 
-    // Fetch Google Sheet live data
     async function loadRosterFromGoogleSheet() {
       showLoadingState();
 
@@ -441,7 +491,9 @@
       }
     }
 
-    // Render Roster Grid
+    // -----------------------------------------------------------------------
+    // 4. ROSTER & SPOTLIGHT UI RENDERING
+    // -----------------------------------------------------------------------
     function renderGrid() {
       const grid = document.getElementById('club-grid');
       const searchTerm = document.getElementById('club-search').value.toLowerCase();
@@ -461,7 +513,6 @@
         const card = document.createElement('button');
         card.onclick = () => selectClub(club.id, true);
         
-        // Visual Styling for Inactive/Host Needed Clubs vs Active Clubs
         const activeStyles = club.is_active 
           ? 'bg-slate-800/60 border-slate-700/70 hover:bg-slate-800' 
           : 'bg-slate-900/80 border-amber-500/30 opacity-75 hover:opacity-100 hover:bg-slate-800/80';
@@ -490,13 +541,11 @@
       lucide.createIcons();
     }
 
-// Select Club Stage Display
     function selectClub(id, userInitiated = false) {
       selectedClubId = id;
       const club = clubsData.find(c => c.id === id);
       if (!club) return;
 
-      // Update Header Badge on Stage
       const badgeContainer = document.getElementById('spotlight-status-badge');
       if (club.is_active) {
         badgeContainer.className = "text-xs font-mono text-emerald-400 flex items-center gap-1";
@@ -525,7 +574,6 @@
           ${club.desc || 'No description available.'}
         </p>
 
-        <!-- Dynamic Structure & Cost Pills -->
         <div class="grid grid-cols-2 gap-2 text-[11px] pt-1">
           <div class="bg-slate-800/80 p-2.5 rounded-lg border border-slate-700/50">
             <span class="block text-slate-500 text-[10px] font-semibold uppercase">Structure</span>
@@ -536,17 +584,6 @@
             <span class="text-emerald-400 font-bold">${club.cost || '100% FAHA Funded'}</span>
           </div>
         </div>
-
-        <!-- Dynamic FAHA Inventory / Supplies On-Hand -->
-        ${club.resources ? `
-          <div class="bg-amber-500/10 border border-amber-500/30 p-3 rounded-xl flex items-start gap-2.5 text-xs">
-            <i data-lucide="box" class="w-4 h-4 text-amber-400 shrink-0 mt-0.5"></i>
-            <div>
-              <span class="block text-[10px] font-bold uppercase tracking-wider text-amber-300">FAHA On-Hand Supplies</span>
-              <p class="text-slate-300 text-[11px] leading-snug mt-0.5">${club.resources}</p>
-            </div>
-          </div>
-        ` : ''}
 
         <div class="pt-2 flex flex-col sm:flex-row gap-2">
           ${club.is_active ? `
@@ -560,11 +597,9 @@
               <span>Offer to Host ${club.name}</span>
             </button>
           `}
-          
-          <!-- Dynamic Discord Deep Link Button -->
-          <a href="${club.discord_link || 'index.html#discord'}" ${club.discord_link ? 'target="_blank" rel="noopener noreferrer"' : ''} class="w-full py-3 bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 font-semibold rounded-xl text-xs transition flex items-center justify-center gap-1.5 min-h-[48px]">
+          <a href="index.html#discord" class="w-full py-3 bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 font-semibold rounded-xl text-xs transition flex items-center justify-center gap-1.5 min-h-[48px]">
             <i data-lucide="message-square" class="w-4 h-4 text-sky-400"></i>
-            <span>${club.discord_link ? 'Open #' + club.name.split(' ')[0] + ' in Discord' : 'Ask in Discord'}</span>
+            <span>Ask in Discord</span>
           </a>
         </div>
       `;
@@ -592,11 +627,14 @@
     }
 
     function toggleMobileMenu() {
-      const menu = document.getElementById('mobile-menu');
-      menu.classList.toggle('hidden');
+      document.getElementById('mobile-menu').classList.toggle('hidden');
     }
 
+    // -----------------------------------------------------------------------
+    // 5. MODAL OPEN / CLOSE & SUBMISSION HANDLERS
+    // -----------------------------------------------------------------------
     function openFundingModal(prefillClubName = '', mode = 'funding') {
+      modalOpenedAt = Date.now();
       const input = document.getElementById('modal-club-input');
       const title = document.getElementById('modal-title');
       const purpose = document.getElementById('modal-purpose-input');
@@ -618,18 +656,29 @@
       document.getElementById('funding-modal').classList.add('hidden');
     }
 
-    async function handleFundingSubmit(e) {
-      e.preventDefault();
-      const form = e.target;
-      const submitBtn = document.getElementById('funding-submit-btn');
+    async function handleFundingSubmit(event) {
+      event.preventDefault();
+      const form = event.target;
 
+      // Silent block if bot is detected
+      if (isSpamSubmission(form)) {
+        alert("Your request has been submitted to the FAHA Board!");
+        form.reset();
+        closeFundingModal();
+        return;
+      }
+
+      const submitBtn = document.getElementById('funding-submit-btn');
       submitBtn.disabled = true;
       submitBtn.innerText = "Submitting Request...";
 
+      // Strip decoy fields before sending to Google Sheets
       const formData = new FormData(form);
+      formData.delete('fax_number');
+      formData.delete('company_website');
 
       try {
-        await fetch(GOOGLE_SCRIPT_WEB_APP_URL, {
+        await fetch(GOOGLE_SCRIPT_URL, {
           method: 'POST',
           mode: 'no-cors',
           body: formData
